@@ -142,6 +142,7 @@ header {
 	font-weight: 500;
 	position: absolute;
 	margin: 134px 62px;
+	width: 100%;
 }
 
 .user-info .id {
@@ -182,6 +183,38 @@ header {
 
 .menu.box {
 	pointer-events: initial
+}
+
+.middle.menu.box {
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    margin: 35vh auto auto 25vw;  
+}
+
+.middle.menu.box .hidden {
+	display: none;
+}
+
+.middle.menu.box .container {
+    display: flex;
+    align-items: center;
+	background-color: rgba(0,0,0,0.7);
+	border: #eee solid 1px;
+}
+
+.middle.menu.box .text {
+	font-family: 'Noto Serif SC', serif;
+	color: #fff;
+	margin: auto;
+	font-size: 3vmin;
+	font-weight: 800;
+	text-align: left;
+	padding: 1vh;
+}
+
+.middle.menu.box input {
+    width: 15vw;
 }
 
 /* left perspective */
@@ -980,11 +1013,11 @@ header {
 /* character perspective box */
 #char-arts-layer {
 	left: 70px !important;
-	top: -70px !important;
+	top: -20px !important;
 }
 
 .char.perspective.box {
-	width: 80%;
+	width: 65%;
 }
 
 .char.perspective.box img {
