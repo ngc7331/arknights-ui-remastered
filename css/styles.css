@@ -184,6 +184,34 @@ header {
 	pointer-events: initial
 }
 
+.middle.menu.box {
+    position: absolute;
+    width: 30vw;
+    height: 30vh;
+    margin: 35vh auto auto 25vw;  
+}
+
+.middle.menu.box .hidden {
+	display: none;
+}
+
+.middle.menu.box .container {
+    display: flex;
+    align-items: center;
+	background-color: rgba(0,0,0,0.7);
+	border: #eee solid 1px;
+}
+
+.middle.menu.box .text {
+	font-family: 'Noto Serif SC', serif;
+	color: #fff;
+	margin: auto;
+	font-size: 25px;
+	font-weight: 800;
+	text-align: left;
+	padding: 10px;
+}
+
 /* left perspective */
 /* prefix */
 #left-menu-layer {
