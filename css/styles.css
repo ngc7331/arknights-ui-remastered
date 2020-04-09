@@ -214,7 +214,7 @@ header {
 }
 
 .middle.menu.box input {
-	width:15vw;
+    width: 15vw;
 }
 
 /* left perspective */
@@ -1013,11 +1013,11 @@ header {
 /* character perspective box */
 #char-arts-layer {
 	left: 70px !important;
-	top: -70px !important;
+	top: -20px !important;
 }
 
 .char.perspective.box {
-	width: 80%;
+	width: 65%;
 }
 
 .char.perspective.box img {

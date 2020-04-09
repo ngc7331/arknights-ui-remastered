@@ -128,7 +128,7 @@
 </head>
 
 <body>
-	<audio loop src="audio/生命流.mp3" id="lifestream" controls hidden></audio>
+	<audio loop src="audio/生命流.mp3" id="lifestream" controls hidden onCanPlay="bgm_volume(0.3)"></audio>
 	<!--
 	  -- Author: Mashiro
 	  -- Site: https://2heng.xin
@@ -172,11 +172,11 @@
 	<div id="view-box" class="view-box">
 <div id="mark" class="mark" data-pointer-events="true">
 		<div id="bg-layer" class="layer" data-depth="0.0">
-				<img id="bg-img" class="cover" src="img/UI_HOME_FRONT_BKG.png">
+				<img id="bg-img" class="cover" src="img/UI_HOME_FRONT_BKG.png" alt=""/>
 			</div>
 			<div id="char-arts-layer" class="layer" data-depth="0.01">
 				<div class="char perspective box">
-					<img src="img/char_010_chen_2b_merged.png">
+					<img src="img/characters/char_010_chen_2.png" alt="" id="chara"/>
 				</div>
 			</div>
 			<div id="left-menu-layer" class="layer" data-depth="0.2">
@@ -184,7 +184,7 @@
 					<div class="container" id="left-mune-adapter">
 						<div class="top">
 							<div class="dialog">
-								<span>博士？睡着了？哼，真没紧张感。</span>
+								<span id="dialog">博士？睡着了？哼，真没紧张感。</span>
 							</div>
 						</div>
 						<div class="bottom">
@@ -225,17 +225,17 @@
 								<div class="status">
 									<div class="item money">
 										<div class="icon"></div>
-										<div class="amount">1000</div>
+										<div class="amount" id="money">1000</div>
 									</div>
 									<div class="item jasper">
 										<div class="icon"></div>
-										<div class="amount">1000</div>
-										<div class="more"></div>
+										<div class="amount" id="jasper">1000</div>
+										<div class="more" onClick="hide('settingBox')"></div>
 									</div>
 									<div class="item stone">
 										<div class="icon"></div>
-										<div class="amount">1000</div>
-										<div class="more"></div>
+										<div class="amount" id="stone">1000</div>
+										<div class="more" onClick="hide('settingBox')"></div>
 									</div>
 								</div>
 							</div>
@@ -244,14 +244,14 @@
 							<div class="intellect">
 								<div class="icon"></div>
 								<div class="content">
-									<div class="figure">
+									<div class="figure" onClick="bgm()">
 										<div class="value">125</div>
 										<div class="total">/125</div>
 									</div>
 									<div class="battle">
 										<div class="text">作战</div>
 										<div class="current">当前</div>
-										<div class="level">5-10 长夜终尽</div>
+										<div class="level" id="battlelv">5-10 长夜终尽</div>
 									</div>
 								</div>
 							</div>
@@ -261,7 +261,7 @@
 								<div class="icon"></div>
 								<div class="text">编队</div>
 							</div>
-							<div class="member">
+							<div class="member" onClick="hide('charBox')">
 								<div class="icon"></div>
 								<div class="text">干员</div>
 								<div class="desc">角色管理</div>
@@ -316,16 +316,24 @@
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
 					<li>修改：小造xu_zh</li>
 					<a href="https://github.com/ngc7331/arknights-ui" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
-					<li>Version 0.2</li>
+					<li>Version 0.3</li>
 				</ul>
 			  </div>
 		    <div class="hidden" id="settingBox">
 			  <ul class="text">
 				<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
-					<li>ID：<input type="text" id="new_userid" value="27975991"></li>
+				<li>ID：<input type="text" id="new_userid" value="27975991"></li>
 				<li>Level：<input type="text" id="new_userlv" value="91"></li>
+				<li>作战进度：<input type="text" id="new_battlelv" value="6-16 黑兔子，白兔子"></li>
+				<li>龙门币：<input type="text" id="new_money" value="+∞"></li>
+				<li>合成玉：<input type="text" id="new_jasper" value="+∞"></li>
+				<li>至纯源石：<input type="text" id="new_stone" value="+∞"></li>
+				<li>对话：<input type="text" id="new_dialog" value="自由的生活，吵闹的伙伴，虽然总给我带来麻烦，不过......我现在觉得这样也不坏。"></li>
 				<button onClick="user()">确认</button>
 			  </ul>
+			  </div>
+			<div class="hidden" id="charBox" onClick="hide('charBox')">
+				<iframe src="char_set.html" width="100%" height="300px"></iframe>
 			  </div>
 	      </div>
 	    </div>
