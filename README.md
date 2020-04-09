@@ -25,7 +25,7 @@
 
 要学的还很多呐
 
-##DEMO
+## DEMO
 
 <https://ngc7331.github.io/arknights-ui/>
 
