@@ -128,6 +128,7 @@
 </head>
 
 <body>
+	<audio loop src="audio/生命流.mp3" id="lifestream" controls hidden></audio>
 	<!--
 	  -- Author: Mashiro
 	  -- Site: https://2heng.xin
@@ -161,8 +162,8 @@
 					</div>
 				</div>
 				<div class="user-info">
-					<div class="name">Mashiro</div>
-					<div class="id">ID: 37040126</div>
+					<div class="name" id="username">Mashiro</div>
+					<div class="id" id="userid">ID: 37040126</div>
 				</div>
 			</div>
 		</div>
@@ -191,13 +192,13 @@
 								<div class="activity-img"></div>
 							</div>
 							<div class="right">
-								<div class="pos-1">
+								<div class="pos-1" onClick="hide('settingBox')">
 									<div class="friends">
 										<div class="icon"></div>
 										<div class="text">好友</div>
 									</div>
 								</div>
-								<div class="pos-2" onClick="info()">
+								<div class="pos-2" onClick="hide('infoBox')">
 									<div class="information">
 										<div class="icon"></div>
 										<div class="text">情报</div>
@@ -239,7 +240,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="pos-2">
+						<div class="pos-2" onClick="bgm()">
 							<div class="intellect">
 								<div class="icon"></div>
 								<div class="content">
@@ -313,10 +314,18 @@
 				<ul class="text">
 					<li>原作者：mashirozx</li>
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
-					<!--<li>修改：小造_zh</li>
-					<a href="https://github.com/ngc7331/arknights-ui" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>-->
-					<li>Version 0.1</li>
+					<li>修改：小造xu_zh</li>
+					<a href="https://github.com/ngc7331/arknights-ui" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
+					<li>Version 0.2</li>
 				</ul>
+			  </div>
+		    <div class="hidden" id="settingBox">
+			  <ul class="text">
+				<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
+					<li>ID：<input type="text" id="new_userid" value="27975991"></li>
+				<li>Level：<input type="text" id="new_userlv" value="91"></li>
+				<button onClick="user()">确认</button>
+			  </ul>
 			  </div>
 	      </div>
 	    </div>
@@ -332,11 +341,11 @@
 
 	</script>
 
-	<script src="js/src/jquery.3.3.1.min.js?v=1.0"></script>
-	<script src="js/src/jquery.pjax.js?v=1.0"></script>
-	<script src="js/src/GYST.js?v=1.0"></script>
-	<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
-	<script src="js/scripts.js?v=1.1"></script>
+<script src="js/src/jquery.3.3.1.min.js?v=1.0"></script>
+<script src="js/src/jquery.pjax.js?v=1.0"></script>
+<script src="js/src/GYST.js?v=1.0"></script>
+<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
+<script src="js/scripts.js?v=1.1"></script>
 <script src="js/button.js"></script>
 </body>
 
