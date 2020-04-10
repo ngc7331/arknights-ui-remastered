@@ -18,11 +18,13 @@
 
 	<link rel="stylesheet" href="css/normalize.css?v=1.0">
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
-
-	<script async src="https://s96.cnzz.com/z_stat.php?id=1277700683&web_id=1277700683"></script>
+	
+	<script src="js/button.js"></script>
+	
+	<!--<script async src="https://s96.cnzz.com/z_stat.php?id=1277700683&web_id=1277700683"></script>-->
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100439904-7"></script>
-	<script>
+	<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100439904-7"></script>-->
+	<!--<script>
 		window.dataLayer = window.dataLayer || [];
 
 		function gtag() {
@@ -32,7 +34,7 @@
 
 		gtag('config', 'UA-100439904-7');
 
-	</script>
+	</script>-->
 
 	<style>
 		/* loader */
@@ -128,7 +130,7 @@
 </head>
 
 <body>
-	<audio loop src="audio/生命流.mp3" id="lifestream" controls hidden onCanPlay="bgm_volume(0.3)"></audio>
+	<audio loop src="audio/生命流.mp3" id="lifestream" controls hidden oncanplaythrough="bgm_volume(20)"></audio>
 	<!--
 	  -- Author: Mashiro
 	  -- Site: https://2heng.xin
@@ -192,13 +194,13 @@
 								<div class="activity-img"></div>
 							</div>
 							<div class="right">
-								<div class="pos-1" onClick="hide('settingBox')">
+								<div class="pos-1" onClick="hidden_switch('settingBox')">
 									<div class="friends">
 										<div class="icon"></div>
 										<div class="text">好友</div>
 									</div>
 								</div>
-								<div class="pos-2" onClick="hide('infoBox')">
+								<div class="pos-2" onClick="hidden_switch('infoBox')">
 									<div class="information">
 										<div class="icon"></div>
 										<div class="text">情报</div>
@@ -230,26 +232,26 @@
 									<div class="item jasper">
 										<div class="icon"></div>
 										<div class="amount" id="jasper">1000</div>
-										<div class="more" onClick="hide('settingBox')"></div>
+										<div class="more" onClick="hidden_switch('settingBox')"></div>
 									</div>
 									<div class="item stone">
 										<div class="icon"></div>
 										<div class="amount" id="stone">1000</div>
-										<div class="more" onClick="hide('settingBox')"></div>
+										<div class="more" onClick="hidden_switch('settingBox')"></div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="pos-2" onClick="bgm()">
+						<div class="pos-2" onClick="bgm()" onMouseOver="mouseover('bgm')" onMouseOut="mouseout('bgm')">
 							<div class="intellect">
 								<div class="icon"></div>
 								<div class="content">
-									<div class="figure" onClick="bgm()">
-										<div class="value">125</div>
-										<div class="total">/125</div>
+									<div class="figure" onClick="bgm();hidden_switch('volumeBox')">
+										<div class="value" id="figure_value">125</div>
+										<div class="total" id="figure_total">\125</div>
 									</div>
 									<div class="battle">
-										<div class="text">作战</div>
+										<div class="text" id="battletext">作战</div>
 										<div class="current">当前</div>
 										<div class="level" id="battlelv">5-10 长夜终尽</div>
 									</div>
@@ -261,7 +263,7 @@
 								<div class="icon"></div>
 								<div class="text">编队</div>
 							</div>
-							<div class="member" onClick="hide('charBox')">
+							<div class="member" onClick="hidden_switch('charBox')">
 								<div class="icon"></div>
 								<div class="text">干员</div>
 								<div class="desc">角色管理</div>
@@ -300,7 +302,7 @@
 								<div class="text">基建</div>
 								<div class="beta"></div>
 							</div>
-							<div class="warehouse">
+							<div class="warehouse" onClick="hidden_switch('exportBox')">
 								<div class="icon"></div>
 								<div class="text">仓库</div>
 							</div>
@@ -316,26 +318,47 @@
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
 					<li>修改：小造xu_zh</li>
 					<a href="https://github.com/ngc7331/arknights-ui" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
-					<li>Version 0.3</li>
+					<li>Version 0.4</li>
 				</ul>
 			  </div>
 		    <div class="hidden" id="settingBox">
-			  <ul class="text">
-				<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
-				<li>ID：<input type="text" id="new_userid" value="27975991"></li>
-				<li>Level：<input type="text" id="new_userlv" value="91"></li>
-				<li>作战进度：<input type="text" id="new_battlelv" value="6-16 黑兔子，白兔子"></li>
-				<li>龙门币：<input type="text" id="new_money" value="+∞"></li>
-				<li>合成玉：<input type="text" id="new_jasper" value="+∞"></li>
-				<li>至纯源石：<input type="text" id="new_stone" value="+∞"></li>
-				<li>对话：<input type="text" id="new_dialog" value="自由的生活，吵闹的伙伴，虽然总给我带来麻烦，不过......我现在觉得这样也不坏。"></li>
-				<button onClick="user()">确认</button>
-			  </ul>
-			  </div>
-			<div class="hidden" id="charBox" onClick="hide('charBox')">
-				<iframe src="char_set.html" width="100%" height="300px"></iframe>
-			  </div>
-	      </div>
+				<ul class="text">
+					<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
+					<li>ID：<input type="number" id="new_userid" value="27975991"></li>
+					<li>Level：<input type="number" id="new_userlv" value="91"></li>
+					<li>作战进度：<input type="text" id="new_battlelv" value="6-16 黑兔子，白兔子"></li>
+					<li>龙门币：<input type="text" id="new_money" value="+∞"></li>
+					<li>合成玉：<input type="text" id="new_jasper" value="+∞"></li>
+					<li>至纯源石：<input type="text" id="new_stone" value="+∞"></li>
+					<li>对话：<input type="text" id="new_dialog" value="自由的生活，吵闹的伙伴，虽然总给我带来麻烦，不过......我现在觉得这样也不坏。"></li>
+					<li>理智上限：<input type="number" id="new_figure_total" value="130"></li>
+					<button onClick="user()">确认</button>
+				</ul>
+			</div>
+			<div class="hidden" id="charBox" onClick="hidden_switch('charBox')">
+				<iframe src="set_character.html" width="100%" height="300px"></iframe>
+			</div>
+			<div class="hidden" id="volumeBox">
+				<div class="text">
+					<div>0<input type="range" min="0" max="100" value="20" onMouseMove="update_vol_display();bgm_volume(this.value)" id="set_volume">100</div>
+					<div id="vol_display">当前音量：20</div>
+				</div>
+			</div>
+			<div class="hidden" id="exportBox">
+				<ul class="text">
+					<li>请点击导出设置并全选<br>复制右侧文本框的内容</li>
+					<li>
+						<button onClick="export_to_obj()">导出设置</button>
+						<input type="text" readonly value="请点击左侧按钮" id="export_obj">
+					</li>
+					<li>或在下方文本框填入内<br>容并点击导入设置</li>
+					<li>
+						<input type="text" id="import_obj">
+						<button onClick="import_from_obj()">导入设置</button>
+					</li>
+				</ul>
+			</div>
+          </div>
 	    </div>
       </div>
 	</div>
@@ -354,7 +377,6 @@
 <script src="js/src/GYST.js?v=1.0"></script>
 <script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
 <script src="js/scripts.js?v=1.1"></script>
-<script src="js/button.js"></script>
 </body>
 
 </html>
