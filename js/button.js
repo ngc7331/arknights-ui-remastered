@@ -1,4 +1,9 @@
-// JavaScript Document
+/*!
+ * Author: xu_zh
+ * License: MIT
+ */
+"use strict";
+
 function hidden_switch(obj){
 	var stat = document.getElementById(obj).className;
 	switch(stat){
@@ -9,7 +14,7 @@ function hidden_switch(obj){
 			document.getElementById(obj).className = "hidden";
 			break;
 	}
-	var boxes = ["infoBox","charBox","settingBox","exportBox","volumeBox"];
+	var boxes = ["infoBox","charBox","settingBox","exportBox","volumeBox","devBox"];
 	for (var i=0; i<boxes.length; i++){
 		if (boxes[i] != obj){
 			hide(boxes[i]);
@@ -22,14 +27,11 @@ function hide(obj){
 }
 
 function user(){
-	document.getElementById("username").innerHTML = document.getElementById("new_username").value;
+	var arr = ["username","level-num","battlelv","money","jasper","stone","dialog"];
+	for (var i=0; i<arr.length; i++){
+		document.getElementById(arr[i]).innerHTML = document.getElementById("new_"+arr[i]).value;
+	}
 	document.getElementById("userid").innerHTML = "ID："+document.getElementById("new_userid").value;
-	document.getElementById("level-num").innerHTML = document.getElementById("new_userlv").value;
-	document.getElementById("battlelv").innerHTML = document.getElementById("new_battlelv").value;
-	document.getElementById("money").innerHTML = document.getElementById("new_money").value;
-	document.getElementById("jasper").innerHTML = document.getElementById("new_jasper").value;
-	document.getElementById("stone").innerHTML = document.getElementById("new_stone").value;
-	document.getElementById("dialog").innerHTML = document.getElementById("new_dialog").value;
 	document.getElementById("figure_total").innerHTML = "\\"+document.getElementById("new_figure_total").value;
 	var volume = document.getElementById("lifestream").volume;
 	bgm_volume(volume*100);
@@ -59,11 +61,17 @@ function mouseover(obj){
 		case "bgm":
 			var audio = document.getElementById("lifestream");
 			if(audio.paused){                 
-				document.getElementById("battletext").innerHTML = "播放"
+				document.getElementById("battletext").innerHTML = "播放";
 			}
 			else{
-				document.getElementById("battletext").innerHTML = "暂停"
+				document.getElementById("battletext").innerHTML = "暂停";
 			}
+			break;
+		case "friends":
+			document.getElementById("friends_text").innerHTML = "设置";
+			break;
+		case "warehouse":
+			document.getElementById("warehouse_text").innerHTML = "导出";
 			break;
 	}
 }
@@ -71,46 +79,61 @@ function mouseover(obj){
 function mouseout(obj){
 	switch(obj){
 		case "bgm":
-			document.getElementById("battletext").innerHTML = "作战"
+			document.getElementById("battletext").innerHTML = "作战";
 			break;
+		case "friends":
+			document.getElementById("friends_text").innerHTML = "好友";
+			break;
+		case "warehouse":
+			document.getElementById("warehouse_text").innerHTML = "仓库";
+			break;
+			
 	}
 }
 
 function set_char(obj){
-	document.getElementById("chara").src = "img/characters/char_"+obj+".png";
+	document.getElementById("chara").src = "img/characters/"+obj;
 	hide("charBox");
 }
 
 function update_vol_display(){
-	document.getElementById("vol_display").innerHTML = "当前音量："+document.getElementById("set_volume").value;
+	document.getElementById("vol_display").innerHTML = "当前音量："+document.getElementById("set_volume").value+"%";
 }
 
 function export_to_obj(){
 	var character = document.getElementById("chara").src;
 	character = character.match("img\/characters\/char_.*")[0];
 	var obj = {
-		name:document.getElementById("username").innerHTML,
-		id:document.getElementById("userid").innerHTML,
-		lv:document.getElementById("level-num").innerHTML,
+		username:document.getElementById("username").innerHTML,
+		userid:document.getElementById("userid").innerHTML,
+		"level-num":document.getElementById("level-num").innerHTML,
 		battlelv:document.getElementById("battlelv").innerHTML,
 		money:document.getElementById("money").innerHTML,
 		jasper:document.getElementById("jasper").innerHTML,
 		stone:document.getElementById("stone").innerHTML,
 		dialog:document.getElementById("dialog").innerHTML,
-		char:character,
+		chara:character,
+		figure_total:document.getElementById("figure_total").innerHTML,
+		vol:document.getElementById("lifestream").volume,
+		
 	}
 	document.getElementById("export_obj").value = JSON.stringify(obj);
 }
 
 function import_from_obj(){
 	var obj = JSON.parse(document.getElementById("import_obj").value);
-	document.getElementById("username").innerHTML = obj.name;
-	document.getElementById("userid").innerHTML = obj.id;
-	document.getElementById("level-num").innerHTML = obj.lv;
-	document.getElementById("battlelv").innerHTML = obj.battlelv;
-	document.getElementById("money").innerHTML = obj.money;
-	document.getElementById("jasper").innerHTML = obj.jasper;
-	document.getElementById("stone").innerHTML = obj.stone;
-	document.getElementById("dialog").innerHTML = obj.dialog;
-	document.getElementById("chara").src = obj.char;
+	for (var x in obj){
+		switch (x){
+			case "chara":
+				document.getElementById("chara").src = obj.chara;
+				break;
+			case "vol":
+				bgm_volume(obj.vol*100);
+				document.getElementById("set_volume").value = obj.vol*100;
+				update_vol_display();
+				break;
+			default:
+				document.getElementById(x).innerHTML = obj[x];
+		}
+	}
 }

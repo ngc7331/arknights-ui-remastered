@@ -7,7 +7,8 @@
 
 	<title>Arknights</title>
 	<meta name="description" content="Arknights">
-	<meta name="author" content="Mashiro">
+	<meta name="originauthor" content="Mashiro">
+	<meta name="author" content="xu_zh">
 
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 
@@ -20,6 +21,8 @@
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
 	
 	<script src="js/button.js"></script>
+	
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	
 	<!--<script async src="https://s96.cnzz.com/z_stat.php?id=1277700683&web_id=1277700683"></script>-->
 	<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -132,8 +135,9 @@
 <body>
 	<audio loop src="audio/生命流.mp3" id="lifestream" controls hidden oncanplaythrough="bgm_volume(20)"></audio>
 	<!--
-	  -- Author: Mashiro
-	  -- Site: https://2heng.xin
+	  -- originAuthor: Mashiro
+	  -- originSite: https://2heng.xin
+	  -- Author: xu_zh, AKA ngc7331
 	  -- License: MIT
 	  -->
 
@@ -147,12 +151,7 @@
 		</div>
 	</div>
 	<header>
-<!--		<div class="author">
-
-			<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
-
-		</div>-->
-
+		
 		<div class="level-box-container">
 			<div class="level-box" id="level-box-adapter">
 				<div class="level-logo"></div>
@@ -194,10 +193,10 @@
 								<div class="activity-img"></div>
 							</div>
 							<div class="right">
-								<div class="pos-1" onClick="hidden_switch('settingBox')">
+								<div class="pos-1" onClick="hidden_switch('settingBox')" onMouseOver="mouseover('friends')" onMouseOut="mouseout('friends')">
 									<div class="friends">
 										<div class="icon"></div>
-										<div class="text">好友</div>
+										<div class="text" id="friends_text">好友</div>
 									</div>
 								</div>
 								<div class="pos-2" onClick="hidden_switch('infoBox')">
@@ -259,7 +258,7 @@
 							</div>
 						</div>
 						<div class="pos-3">
-							<div class="team">
+							<div class="team" onClick="hidden_switch('devBox')">
 								<div class="icon"></div>
 								<div class="text">编队</div>
 							</div>
@@ -271,7 +270,7 @@
 							<div class="blank"></div>
 						</div>
 						<div class="pos-4">
-							<div class="shop">
+							<div class="shop" onClick="hidden_switch('devBox')">
 								<div class="icon"></div>
 								<div class="text">采购中心</div>
 							</div>
@@ -280,12 +279,12 @@
 									<div class="icon"></div>
 									<div class="text">招募</div>
 								</div>
-								<div class="bottom">
+								<div class="bottom" onClick="hidden_switch('devBox')">
 									<div class="left">
 										<div class="icon"></div>
 										<div class="text">公开招募</div>
 									</div>
-									<div class="right">
+									<div class="right" onClick="hidden_switch('devBox')">
 										<div class="icon"></div>
 										<div class="text">干员寻访</div>
 									</div>
@@ -293,18 +292,18 @@
 							</div>
 						</div>
 						<div class="pos-5">
-							<div class="task">
+							<div class="task" onClick="hidden_switch('devBox')">
 								<div class="icon"></div>
 								<div class="text">任务</div>
 							</div>
-							<div class="infrastructure">
+							<div class="infrastructure" onClick="hidden_switch('devBox')">
 								<div class="icon"></div>
 								<div class="text">基建</div>
 								<div class="beta"></div>
 							</div>
-							<div class="warehouse" onClick="hidden_switch('exportBox')">
+							<div class="warehouse" onClick="hidden_switch('exportBox')" onMouseOver="mouseover('warehouse')" onMouseOut="mouseout('warehouse')">
 								<div class="icon"></div>
-								<div class="text">仓库</div>
+								<div class="text" id="warehouse_text">仓库</div>
 							</div>
 						</div>
 					</div>
@@ -318,14 +317,14 @@
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
 					<li>修改：小造xu_zh</li>
 					<a href="https://github.com/ngc7331/arknights-ui" target="_blank"><img src="img/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/wordpress.svg" class="social-link"> Blog </a>
-					<li>Version 0.4</li>
+					<li>Version 1.0.0</li>
 				</ul>
 			  </div>
 		    <div class="hidden" id="settingBox">
 				<ul class="text">
 					<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
 					<li>ID：<input type="number" id="new_userid" value="27975991"></li>
-					<li>Level：<input type="number" id="new_userlv" value="91"></li>
+					<li>Level：<input type="number" id="new_level-num" value="91"></li>
 					<li>作战进度：<input type="text" id="new_battlelv" value="6-16 黑兔子，白兔子"></li>
 					<li>龙门币：<input type="text" id="new_money" value="+∞"></li>
 					<li>合成玉：<input type="text" id="new_jasper" value="+∞"></li>
@@ -336,12 +335,12 @@
 				</ul>
 			</div>
 			<div class="hidden" id="charBox" onClick="hidden_switch('charBox')">
-				<iframe src="set_character.html" width="100%" height="300px"></iframe>
+				<iframe src="set_character.html" width="100%" height="300px" scrolling="auto"></iframe>
 			</div>
 			<div class="hidden" id="volumeBox">
 				<div class="text">
 					<div>0<input type="range" min="0" max="100" value="20" onMouseMove="update_vol_display();bgm_volume(this.value)" id="set_volume">100</div>
-					<div id="vol_display">当前音量：20</div>
+					<div id="vol_display">当前音量：20%</div>
 				</div>
 			</div>
 			<div class="hidden" id="exportBox">
@@ -357,6 +356,11 @@
 						<button onClick="import_from_obj()">导入设置</button>
 					</li>
 				</ul>
+			</div>
+			<div class="hidden" id="devBox">
+				<div class="text">
+					该区域正在开发中......
+				</div>
 			</div>
           </div>
 	    </div>
