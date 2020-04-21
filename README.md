@@ -22,7 +22,8 @@
 要学的还很多呐
 
 ## DEMO
-<https://ngc7331.github.io/arknights-ui-remastrerd/>
+<https://ngc7331.github.io/arknights-ui-remastered/>
+
 国内请尝试gitee：<http://xu_zh.gitee.io/arknights-ui-remastered/>
 
 # 下面是原文
