@@ -22,7 +22,8 @@
 要学的还很多呐
 
 ## DEMO
-<https://ngc7331.github.io/arknights-ui/>
+<https://ngc7331.github.io/arknights-ui-remastrerd/>
+国内请尝试gitee：<http://xu_zh.gitee.io/arknights-ui-remastered/>
 
 # 下面是原文
 # Arknights UI：H5 + CSS 复刻明日方舟主界面
