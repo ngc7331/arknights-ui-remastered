@@ -1,10 +1,35 @@
 /*!
- * Author: xu_zh
+ * Author: xu_zh, AKA ngc7331
  * License: MIT
  */
 "use strict";
 
-function hidden_switch(obj){
+function keypress(event){
+	if(document.getElementById("settingBox").className == "container"){
+		return;
+	}
+	switch(event.keyCode){
+		case 32:
+			var out=(document.getElementById("battletext").innerHTML == "作战");
+			bgm_switch(out);
+			break;
+		case 38:
+			var volume = document.getElementById("bgm").volume*100;
+			bgm_volume(volume+1);
+			document.getElementById("set_volume").value=volume+1;
+			update_vol_display();
+			break;
+		case 40:
+			var volume = document.getElementById("bgm").volume*100;
+			bgm_volume(volume-1);
+			document.getElementById("set_volume").value=volume-1;
+			update_vol_display();
+			break;
+			
+	}
+}
+
+function box_switch(obj){
 	var stat = document.getElementById(obj).className;
 	switch(stat){
 		case "hidden":
@@ -33,25 +58,45 @@ function user(){
 	}
 	document.getElementById("userid").innerHTML = "ID："+document.getElementById("new_userid").value;
 	document.getElementById("figure_total").innerHTML = "\\"+document.getElementById("new_figure_total").value;
-	var volume = document.getElementById("lifestream").volume;
-	bgm_volume(volume*100);
+	var volume = document.getElementById("bgm").volume*100;
+	bgm_volume(volume);
 	hide("settingBox");
 }
 
-function bgm(){
-	var audio = document.getElementById("lifestream");
-	if(audio.paused){                 
-		audio.play();
-		document.getElementById("battletext").innerHTML = "暂停";
+function bgm_switch(keyboard){
+	var audio = document.getElementById("bgm");
+	if(keyboard){
+		if(audio.paused){
+			audio.play();
+			document.getElementById("battletext").innerHTML = "开始播放";
+			setTimeout(function(){document.getElementById("battletext").innerHTML = "作战";},500);
+		}
+		else{
+			audio.pause();
+			document.getElementById("battletext").innerHTML = "已暂停";
+			setTimeout(function(){document.getElementById("battletext").innerHTML = "作战";},500);
+		}
 	}
 	else{
-		audio.pause();
-		document.getElementById("battletext").innerHTML = "播放";
+		if(audio.paused){
+			audio.play();
+			document.getElementById("battletext").innerHTML = "暂停";
+		}
+		else{
+			audio.pause();
+			document.getElementById("battletext").innerHTML = "播放";
+		}
 	}
 }
 
 function bgm_volume(num){
-	document.getElementById("lifestream").volume=num/100;
+	if(num>=100){
+		num=100;
+	}
+	if(num<=0){
+		num=0;
+	}
+	document.getElementById("bgm").volume=num/100;
 	var total = parseInt(document.getElementById("figure_total").innerHTML.slice(1));
 	document.getElementById("figure_value").innerHTML=parseInt(num*total/100);
 }
@@ -59,7 +104,7 @@ function bgm_volume(num){
 function mouseover(obj){
 	switch(obj){
 		case "bgm":
-			var audio = document.getElementById("lifestream");
+			var audio = document.getElementById("bgm");
 			if(audio.paused){                 
 				document.getElementById("battletext").innerHTML = "播放";
 			}
@@ -114,7 +159,7 @@ function export_to_obj(){
 		dialog:document.getElementById("dialog").innerHTML,
 		chara:character,
 		figure_total:document.getElementById("figure_total").innerHTML,
-		vol:document.getElementById("lifestream").volume,
+		vol:document.getElementById("bgm").volume,
 		
 	}
 	document.getElementById("export_obj").value = JSON.stringify(obj);
