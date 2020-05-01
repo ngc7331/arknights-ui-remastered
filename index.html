@@ -133,16 +133,21 @@
 </head>
 
 <body onKeyDown="keypress(event)">
-	<audio loop src="audio/生命流.mp3" id="bgm" controls hidden onloadstart="bgm_volume(20)"></audio>
 	<!--
 	  -- originAuthor: Mashiro
 	  -- originSite: https://2heng.xin
 	  -- Author: xu_zh, AKA ngc7331
 	  -- License: MIT
 	  -->
-
+	<audio loop src="audio/生命流.mp3" id="bgm" controls hidden onloadstart="bgm_volume(20)"></audio>
 	<div class="loader-layer" id="loader-layer">
-		<div class="tips">Tips: 如果加载速度过慢可以使用代理（本页托管于 GitHub Pages）。</div>
+		<div class="tips" id="github_pages_tips">Tips: 如果加载速度过慢可以使用代理（本页托管于 GitHub Pages）。</div>
+		<script>
+			var hostname = window.location.hostname;
+			if(hostname.search("github.io") == -1){
+				document.getElementById("github_pages_tips").style = "display: none;";
+			}
+		</script>
 		<div class="loader" id="loader">
 			<div class="bar">
 				<div class="circle"></div>
@@ -316,8 +321,9 @@
 					<li>原作者：mashirozx</li>
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
 					<li>修改：小造xu_zh</li>
-					<a href="https://github.com/ngc7331/arknights-ui" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
-					<li>Version 1.1.1</li>
+					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
+					<li style="font-size: 2vmin;">Version 1.2 (Updated 2020/05/01)</li>
+					<li style="font-size: 2vmin;">DataVersion 1.0.01 (Updated 2020/05/01)</li>
 				</ul>
 			  </div>
 		    <div class="hidden" id="settingBox">
@@ -341,17 +347,17 @@
 				<ul class="text">
 				  <li>0<input type="range" min="0" max="100" value="20" onMouseMove="update_vol_display();bgm_volume(this.value)" id="set_volume">100</li>
 					<li id="vol_display">当前音量：20%</li>
-					<li style="font-size: 2vmin;">Tips: 可以使用[空格键]控制播放/暂停<br>[箭头↑/↓]控制音量大小哦</li>
+					<li style="font-size: 2vmin;">Tips: 可以使用[空格键]控制播放/暂停<br>[方向键↑/↓]控制音量大小哦</li>
 				</ul>
 			</div>
 			<div class="hidden" id="exportBox">
 				<ul class="text">
-					<li>请点击导出设置并全选<br>复制右侧文本框的内容</li>
+					<li style="font-size: 2vmin;">请点击导出设置并全选复制并保存右侧文本框的内容</li>
 					<li>
 						<button onClick="export_to_obj()">导出设置</button>
 						<input type="text" readonly value="请点击左侧按钮" id="export_obj">
 					</li>
-					<li>或在下方文本框填入内<br>容并点击导入设置</li>
+					<li style="font-size: 2vmin;">或在下方文本框填入导出的内容并点击导入设置</li>
 					<li>
 						<input type="text" id="import_obj">
 						<button onClick="import_from_obj()">导入设置</button>
@@ -377,7 +383,7 @@
 
 	</script>
 
-<script src="js/src/jquery.3.3.1.min.js?v=1.0"></script>
+<script src="js/src/jquery-3.5.0.min.js?v=1.0"></script>
 <script src="js/src/jquery.pjax.js?v=1.0"></script>
 <script src="js/src/GYST.js?v=1.0"></script>
 <script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>

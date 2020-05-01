@@ -181,4 +181,5 @@ function import_from_obj(){
 				document.getElementById(x).innerHTML = obj[x];
 		}
 	}
+	hide("exportBox");
 }
