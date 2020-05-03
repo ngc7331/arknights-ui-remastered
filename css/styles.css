@@ -216,6 +216,9 @@ header {
 .middle.menu.box input {
     width: 15vw;
 }
+.middle.menu.box input[type="checkbox"] {
+    width: 2vw;
+}
 
 /* left perspective */
 /* prefix */

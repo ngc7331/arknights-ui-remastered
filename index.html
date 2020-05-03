@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
 	<meta charset="utf-8">
@@ -139,7 +139,8 @@
 	  -- Author: xu_zh, AKA ngc7331
 	  -- License: MIT
 	  -->
-	<audio loop src="audio/生命流.mp3" id="bgm" controls hidden onloadstart="bgm_volume(20)"></audio>
+	<audio src="https://music.163.com/song/media/outer/url?id=1371757760.mp3" id="bgm" data-netease="true" onError="reset_bgmsrc()" onEnded="bgm_end()"></audio>
+	
 	<div class="loader-layer" id="loader-layer">
 		<div class="tips" id="github_pages_tips">Tips: 如果加载速度过慢可以使用代理（本页托管于 GitHub Pages）。</div>
 		<script>
@@ -155,8 +156,8 @@
 			</div>
 		</div>
 	</div>
+	
 	<header>
-		
 		<div class="level-box-container">
 			<div class="level-box" id="level-box-adapter">
 				<div class="level-logo"></div>
@@ -176,8 +177,8 @@
 	</header>
 
 	<div id="view-box" class="view-box">
-<div id="mark" class="mark" data-pointer-events="true">
-		<div id="bg-layer" class="layer" data-depth="0.0">
+		<div id="mark" class="mark" data-pointer-events="true">
+			<div id="bg-layer" class="layer" data-depth="0.0">
 				<img id="bg-img" class="cover" src="img/ui/UI_HOME_FRONT_BKG.png" alt=""/>
 			</div>
 			<div id="char-arts-layer" class="layer" data-depth="0.01">
@@ -322,10 +323,33 @@
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
 					<li>修改：小造xu_zh</li>
 					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
-					<li style="font-size: 2vmin;">Version 1.2 (Updated 2020/05/01)</li>
-					<li style="font-size: 2vmin;">DataVersion 1.0.01 (Updated 2020/05/01)</li>
+					<li style="font-size: 2vmin;">Main:
+						<ul>
+							<li>Version 1.3</li>
+							<li>Updated 2020/05/03</li>
+							<li>Copyright ©2019 <a href="https://github.com/mashirozx/arknights-ui/" target="_blank">Mashiro</a></li>
+							<li>Portions copyright ©2020 <a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank">xu_zh</a></li>
+							<li>Released under the <a href="https://github.com/ngc7331/arknights-ui-remastered/blob/master/LICENSE" target="_blank">MIT</a> License.</li>
+						</ul>
+					</li>
+					<br>
+					<li style="font-size: 2vmin;">Art：
+						<ul>
+							<li>Version 1.0.01</li>
+							<li>Updated 2020/05/01</li>
+							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
+						</ul>
+					</li>
+					<br>
+					<li style="font-size: 2vmin;">Audio：
+						<ul>
+							<li>Updated 2020/05/03</li>
+							<li>Powered by<a href="https://music.163.com" target="_blank"> 网易云音乐 </a></li>
+							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
+						</ul>
+					</li>
 				</ul>
-			  </div>
+		    </div>
 		    <div class="hidden" id="settingBox">
 				<ul class="text">
 					<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
@@ -341,13 +365,25 @@
 				</ul>
 			</div>
 			<div class="hidden" id="charBox" onClick="box_switch('charBox')">
-				<iframe src="set_character.html" width="100%" height="300px" scrolling="auto"></iframe>
+				<iframe src="set_character.html" width="100%" height="500vh" scrolling="auto"></iframe>
 			</div>
 			<div class="hidden" id="volumeBox">
 				<ul class="text">
-				  <li>0<input type="range" min="0" max="100" value="20" onMouseMove="update_vol_display();bgm_volume(this.value)" id="set_volume">100</li>
+					<li><div id="bgm_name">正在播放：生命流</div></li>
+					<div id="bgm_btn">
+						<li>
+							<button onClick="change_bgm('prv')">上一首</button>
+				    		<button onClick="change_bgm('nxt')">下一首</button>
+							<button onClick="change_bgm('ori')">默认</button>
+						</li>
+						<li>推荐歌单<input type="checkbox" id="ngc7331_selected_bgm" checked></li>
+						<li>单曲循环<input type="checkbox" id="bgm_loop" checked></li>
+			    	</div>
+					<br>
+					<li>0<input type="range" min="0" max="100" value="20" onMouseMove="update_vol_display();bgm_volume(this.value)" id="set_volume">100</li>
 					<li id="vol_display">当前音量：20%</li>
-					<li style="font-size: 2vmin;">Tips: 可以使用[空格键]控制播放/暂停<br>[方向键↑/↓]控制音量大小哦</li>
+					<br>
+					<li style="font-size: 2vmin;">Tips: 可以使用[空格键]控制播放/暂停<br>[方向键↑/↓]控制音量大小<br>[方向键←/→]控制上下首哦</li>
 				</ul>
 			</div>
 			<div class="hidden" id="exportBox">
@@ -357,6 +393,7 @@
 						<button onClick="export_to_obj()">导出设置</button>
 						<input type="text" readonly value="请点击左侧按钮" id="export_obj">
 					</li>
+					<br>
 					<li style="font-size: 2vmin;">或在下方文本框填入导出的内容并点击导入设置</li>
 					<li>
 						<input type="text" id="import_obj">
@@ -374,20 +411,18 @@
       </div>
 	</div>
 
-	
-<script>
+	<script>bgm_volume(20);//Initialize the volume</script>
+	<script>
 		/* loader */
 		(function() {
 			document.querySelector('#loader').setAttribute('style', 'transform: scale(' + Math.max(window.innerHeight, window.innerWidth) / 1366 + ') translateY(-50%); top: 60%; transform-origin: top center;');
 		})();
 
 	</script>
-
-<script src="js/src/jquery-3.5.0.min.js?v=1.0"></script>
-<script src="js/src/jquery.pjax.js?v=1.0"></script>
-<script src="js/src/GYST.js?v=1.0"></script>
-<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
-<script src="js/scripts.js?v=1.1"></script>
+	<script src="js/src/jquery-3.5.0.min.js?v=1.0"></script>
+	<script src="js/src/jquery.pjax.js?v=1.0"></script>
+	<script src="js/src/GYST.js?v=1.0"></script>
+	<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
+	<script src="js/scripts.js?v=1.1"></script>
 </body>
-
 </html>
