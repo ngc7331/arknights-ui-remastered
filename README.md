@@ -40,7 +40,7 @@
 ## DEMO
 <https://ngc7331.github.io/arknights-ui-remastered/>
 
-国内请尝试gitee：<http://xu_zh.gitee.io/arknights-ui-remastered/>
+国内请尝试gitee：<https://xu_zh.gitee.io/arknights-ui-remastered/>
 
 # 下面是原文
 # Arknights UI：H5 + CSS 复刻明日方舟主界面
