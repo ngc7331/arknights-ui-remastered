@@ -5,8 +5,8 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Arknights</title>
-	<meta name="description" content="Arknights">
+	<title>Arknights-ui</title>
+	<meta name="description" content="Arknights-ui">
 	<meta name="originauthor" content="Mashiro">
 	<meta name="author" content="xu_zh">
 
@@ -251,7 +251,7 @@
 							<div class="intellect">
 								<div class="icon"></div>
 								<div class="content">
-									<div class="figure" onClick="bgm_switch();box_switch('volumeBox')">
+									<div class="figure" onClick="bgm_switch();box_switch('bgmBox')">
 										<div class="value" id="figure_value">125</div>
 										<div class="total" id="figure_total">\125</div>
 									</div>
@@ -264,7 +264,7 @@
 							</div>
 						</div>
 						<div class="pos-3">
-							<div class="team" onClick="box_switch('devBox')">
+							<div class="team" onClick="box_switch('offsetBox')">
 								<div class="icon"></div>
 								<div class="text">编队</div>
 							</div>
@@ -315,18 +315,18 @@
 					</div>
 				</div>
 			</div>
-		<div class="layer" id="middle-layer" data-depth="0.2">
+		<div class="layer" id="middle-menu-layer" data-depth="0.3">
 		  <div class="middle menu box">
 		    <div class="hidden" id="infoBox"> 
 				<ul class="text">
 					<li>原作者：mashirozx</li>
 					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
 					<li>修改：小造xu_zh</li>
-					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:88/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
+					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:4443/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
 					<li style="font-size: 2vmin;">Main:
 						<ul>
-							<li>Version 1.3</li>
-							<li>Updated 2020/05/03</li>
+							<li>Version 1.4</li>
+							<li>Updated 2020/06/03</li>
 							<li>Copyright ©2019 <a href="https://github.com/mashirozx/arknights-ui/" target="_blank">Mashiro</a></li>
 							<li>Portions copyright ©2020 <a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank">xu_zh</a></li>
 							<li>Released under the <a href="https://github.com/ngc7331/arknights-ui-remastered/blob/master/LICENSE" target="_blank">MIT</a> License.</li>
@@ -335,15 +335,15 @@
 					<br>
 					<li style="font-size: 2vmin;">Art：
 						<ul>
-							<li>Version 1.0.01</li>
-							<li>Updated 2020/05/01</li>
+							<li>Version 1.1.11</li>
+							<li>Updated 2020/06/02</li>
 							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
 						</ul>
 					</li>
 					<br>
 					<li style="font-size: 2vmin;">Audio：
 						<ul>
-							<li>Updated 2020/05/03</li>
+							<li>Updated 2020/06/01</li>
 							<li>Powered by<a href="https://music.163.com" target="_blank"> 网易云音乐 </a></li>
 							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
 						</ul>
@@ -354,8 +354,8 @@
 				<ul class="text">
 					<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
 					<li>ID：<input type="number" id="new_userid" value="27975991"></li>
-					<li>Level：<input type="number" id="new_level-num" value="91"></li>
-					<li>作战进度：<input type="text" id="new_battlelv" value="6-16 黑兔子，白兔子"></li>
+					<li>Level：<input type="number" id="new_level-num" value="97"></li>
+					<li>作战进度：<input type="text" id="new_battlelv" value="7-18 爱国者之死"></li>
 					<li>龙门币：<input type="text" id="new_money" value="+∞"></li>
 					<li>合成玉：<input type="text" id="new_jasper" value="+∞"></li>
 					<li>至纯源石：<input type="text" id="new_stone" value="+∞"></li>
@@ -367,7 +367,7 @@
 			<div class="hidden" id="charBox" onClick="box_switch('charBox')">
 				<iframe src="set_character.html" width="100%" height="500vh" scrolling="auto"></iframe>
 			</div>
-			<div class="hidden" id="volumeBox">
+			<div class="hidden" id="bgmBox">
 				<ul class="text">
 					<li><div id="bgm_name">正在播放：生命流</div></li>
 					<div id="bgm_btn">
@@ -399,6 +399,13 @@
 						<input type="text" id="import_obj">
 						<button onClick="import_from_obj()">导入设置</button>
 					</li>
+				</ul>
+			</div>
+			<div class="hidden" id="offsetBox">
+				<ul class="text">
+					<li>调整干员立绘位置<button onClick="reset_char_offset()">重置</button></li>
+					<li>x轴<input type="range" min="-80" max="220" value="70" id="offsetX" onMouseMove="char_offset()"></li>
+					<li>y轴<input type="range" min="-170" max="130" value="-20" id="offsetY" onMouseMove="char_offset()"></li>
 				</ul>
 			</div>
 			<div class="hidden" id="devBox">

@@ -185,11 +185,17 @@ header {
 	pointer-events: initial
 }
 
+#middle-menu-layer {
+	left: 25vw !important;
+	top: 25vh !important;
+	bottom: 0 !important;
+	right: 0 !important;
+}
+
 .middle.menu.box {
     position: absolute;
     width: 30vw;
     height: 30vh;
-    margin: 25vh auto auto 25vw;  
 }
 
 .middle.menu.box .hidden {

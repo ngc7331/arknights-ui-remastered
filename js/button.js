@@ -5,7 +5,7 @@
 "use strict";
 
 function keypress(event){
-	if(document.getElementById("settingBox").className == "container"){
+	if(document.getElementById("settingBox").className == "container" && event.keyCode!=27){
 		return;
 	}
 	switch(event.keyCode){
@@ -31,6 +31,12 @@ function keypress(event){
 		case 39: //right
 			change_bgm("nxt");
 			break;
+		case 27: //esc
+			var boxes = ["infoBox","charBox","settingBox","exportBox","bgmBox","offsetBox","devBox"];
+			for (var i=0; i<boxes.length; i++){
+				document.getElementById(boxes[i]).className = "hidden";
+			}
+			break;
 	}
 	console.log("keypress "+event.keyCode);
 }
@@ -45,7 +51,7 @@ function box_switch(obj){
 			document.getElementById(obj).className = "hidden";
 			break;
 	}
-	var boxes = ["infoBox","charBox","settingBox","exportBox","volumeBox","devBox"];
+	var boxes = ["infoBox","charBox","settingBox","exportBox","bgmBox","offsetBox","devBox"];
 	for (var i=0; i<boxes.length; i++){
 		if (boxes[i] != obj){
 			document.getElementById(boxes[i]).className = "hidden";
@@ -137,6 +143,7 @@ function change_bgm(type){
 		"1444493657",
 		"1444493780",
 		"1444503072",
+		"1451700083",
 	];
 	var arr_name = [
 		"生命流",
@@ -167,6 +174,7 @@ function change_bgm(type){
 		"Renegade",
 		"Requiem",
 		"Sparkling Hydraulics",
+		"Reversed Time",
 	];
 	if(document.getElementById("ngc7331_selected_bgm").checked){
 		arr_id = [
@@ -175,6 +183,7 @@ function change_bgm(type){
 			"1411527086",
 			"1436614177",
 			"1444503072",
+			"1451700083",
 		];
 		arr_name = [
 			"生命流",
@@ -182,6 +191,7 @@ function change_bgm(type){
 			"Boiling Blood",
 			"春弦",
 			"Sparkling Hydraulics",
+			"Reversed Time",
 		];
 	}
 	var id = document.getElementById("bgm").src.match("id=.*\.mp3")[0].substr(3,10);
@@ -253,6 +263,19 @@ function set_char(obj){
 	document.getElementById("charBox").className = "hidden";
 }
 
+function char_offset(){
+	var x = document.getElementById("offsetX").value;
+	var y = document.getElementById("offsetY").value;
+	var cssText = $("#char-arts-layer").attr("style") + "; left:" + x + "px !important; top:" + y + "px !important;";
+	$("#char-arts-layer").css("cssText", cssText);
+}
+
+function reset_char_offset(){
+	document.getElementById("offsetX").value = 70;
+	document.getElementById("offsetY").value = -20;
+	char_offset();
+}
+
 function update_vol_display(){
 	document.getElementById("vol_display").innerHTML = "当前音量："+document.getElementById("set_volume").value+"%";
 }
@@ -272,7 +295,8 @@ function export_to_obj(){
 		chara:character,
 		figure_total:document.getElementById("figure_total").innerHTML,
 		vol:document.getElementById("bgm").volume,
-		
+		offsetX:document.getElementById("offsetX").value,
+		offsetY:document.getElementById("offsetY").value,
 	}
 	document.getElementById("export_obj").value = JSON.stringify(obj);
 }
@@ -288,6 +312,14 @@ function import_from_obj(){
 				bgm_volume(obj.vol*100);
 				document.getElementById("set_volume").value = obj.vol*100;
 				update_vol_display();
+				break;
+			case "offsetX":
+				document.getElementById("offsetX").value = obj.offsetX;
+				char_offset();
+				break;
+			case "offsetY":
+				document.getElementById("offsetY").value = obj.offsetY;
+				char_offset();
 				break;
 			default:
 				document.getElementById(x).innerHTML = obj[x];
