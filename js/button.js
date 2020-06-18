@@ -144,6 +144,8 @@ function change_bgm(type){
 		"1444493780",
 		"1444503072",
 		"1451700083",
+		"1456166162",
+		"1456166166"
 	];
 	var arr_name = [
 		"生命流",
@@ -175,6 +177,8 @@ function change_bgm(type){
 		"Requiem",
 		"Sparkling Hydraulics",
 		"Reversed Time",
+		"从那高地上远眺",
+		"УраУра"
 	];
 	if(document.getElementById("ngc7331_selected_bgm").checked){
 		arr_id = [
