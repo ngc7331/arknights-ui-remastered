@@ -115,7 +115,7 @@ function change_bgm(type){
 		return 1;
 	}
 	var arr_id = [
-		"1371757760",//生命流排序提前
+		"1371757760",
 		"1371757762",
 		"1371760675",
 		"1371757759",
@@ -145,10 +145,11 @@ function change_bgm(type){
 		"1444503072",
 		"1451700083",
 		"1456166162",
-		"1456166166"
+		"1456166166",
+		"1460626792",
 	];
 	var arr_name = [
-		"生命流",
+		"生命流",//生命流排序提前
 		"Synthetech",
 		"逃亡 part2",
 		"泛用型自动化解决方案0.3.2.9f2",//基建
@@ -178,23 +179,22 @@ function change_bgm(type){
 		"Sparkling Hydraulics",
 		"Reversed Time",
 		"从那高地上远眺",
-		"УраУра"
+		"УраУра",
+		"Everything's Alright",//祝高考的同学Everything's Alright
 	];
 	if(document.getElementById("ngc7331_selected_bgm").checked){
 		arr_id = [
 			"1371757760", 
-			"1405147102",
-			"1411527086",
+			"1403774122",
+			"1460626792",
 			"1436614177",
-			"1444503072",
 			"1451700083",
 		];
 		arr_name = [
 			"生命流",
-			"Speed of Light (Inst.)",
-			"Boiling Blood",
+			"Speed of Light",
+			"Everything's Alright",
 			"春弦",
-			"Sparkling Hydraulics",
 			"Reversed Time",
 		];
 	}
