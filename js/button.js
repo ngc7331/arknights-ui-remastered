@@ -148,6 +148,8 @@ function change_bgm(type){
 		"1456166166",
 		"1460626792",
 		"1462342505",
+		"1467848445",
+		"1470071584",
 	];
 	var arr_name = [
 		"生命流",//生命流排序提前
@@ -183,6 +185,8 @@ function change_bgm(type){
 		"УраУра",
 		"Everything's Alright",//祝高考的同学Everything's Alright
 		"Lily of the Valley",
+		"夏浪",
+		"El Brillo Solitario",
 	];
 	if(document.getElementById("ngc7331_selected_bgm").checked){
 		arr_id = [
