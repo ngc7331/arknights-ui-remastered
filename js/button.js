@@ -150,6 +150,8 @@ function change_bgm(type){
 		"1462342505",
 		"1467848445",
 		"1470071584",
+		"1473615377",
+		"1473615924",
 	];
 	var arr_name = [
 		"生命流",//生命流排序提前
@@ -187,8 +189,10 @@ function change_bgm(type){
 		"Lily of the Valley",
 		"夏浪",
 		"El Brillo Solitario",
+		"Evolutionary Mechanization",
+		"ALIVE",
 	];
-	if(document.getElementById("ngc7331_selected_bgm").checked){
+	/*if(document.getElementById("ngc7331_selected_bgm").checked){
 		arr_id = [
 			"1371757760", 
 			"1403774122",
@@ -203,7 +207,7 @@ function change_bgm(type){
 			"春弦",
 			"Reversed Time",
 		];
-	}
+	}*/
 	var id = document.getElementById("bgm").src.match("id=.*\.mp3")[0].substr(3,10);
 	var pos = arr_id.indexOf(id);
 	switch(type){

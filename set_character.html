@@ -8,17 +8,34 @@
 		display: block;
 		float: left;
 	}
+	.text{
+		color: aliceblue;
+	}
+	.hidden{
+		display: none
+	}
 </style>
 <script>
 	function set(obj){
 		character = obj.src.match("char_.*\.png")[0];
 		window.parent.set_char(character);
 	}
+	function display(){
+		if(document.getElementById("display").checked){
+			document.getElementById("normal").className = "hidden"
+			document.getElementById("special").className = "box"
+		}
+		else{
+			document.getElementById("normal").className = "box"
+			document.getElementById("special").className = "hidden"
+		}
+	}
 </script>
 </head>
 
 <body>
-<div>
+<div class="text"><input type="checkbox" onChange="display()" id="display">显示"集成战略"临时招募干员</div>
+<div class="box" id="normal">
 	<img src="img/avatars/char_002_amiya_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_002_amiya_1+.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_002_amiya_2.png" alt="" onClick="set(this)"/>
@@ -147,6 +164,7 @@
 	<img src="img/avatars/char_172_svrash_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_172_svrash_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_172_svrash_snow1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_172_svrash_summer4.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_173_slchan_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_173_slchan_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_173_slchan_wild1.png" alt="" onClick="set(this)"/>
@@ -193,6 +211,7 @@
 	<img src="img/avatars/char_201_moeshd_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_201_moeshd_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_201_moeshd_kfc1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_201_moeshd_summer4.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_202_demkni_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_202_demkni_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_202_demkni_boc1.png" alt="" onClick="set(this)"/>
@@ -324,6 +343,7 @@
 	<img src="img/avatars/char_336_folivo_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_337_utage_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_337_utage_2.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_337_utage_summer4.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_340_shwaz_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_340_shwaz_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_340_shwaz_snow1.png" alt="" onClick="set(this)"/>
@@ -343,6 +363,8 @@
 	<img src="img/avatars/char_356_broca_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_358_lisa_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_358_lisa_2.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_366_acdrop_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_366_acdrop_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_367_swllow_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_367_swllow_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_367_swllow_boc1.png" alt="" onClick="set(this)"/>
@@ -363,17 +385,35 @@
 	<img src="img/avatars/char_401_elysm_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_405_absin_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_405_absin_2.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_411_tomimi_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_411_tomimi_2.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_415_flint_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_415_flint_2.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_416_zumama_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_416_zumama_2.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_500_noirc_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_501_durin_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_502_nblade_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_503_rang_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_2013_cerber_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_2013_cerber_2.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_2013_cerber_summer4.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_2014_nian_1.png" alt="" onClick="set(this)"/>
 	<img src="img/avatars/char_2014_nian_2.png" alt="" onClick="set(this)"/>
 	
 	<!--“我愿意加入罗德岛”-->
 	<img src="img/avatars/char_1505_frstar_1.png" alt="" onClick="set(this)"/>
+</div>
+	
+<div class="hidden" id="special">
+	<img src="img/avatars/char_504_rguard_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_505_rcast_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_506_rmedic_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_507_rsnipe_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_508_aguard_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_509_acast_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_510_amedic_1.png" alt="" onClick="set(this)"/>
+	<img src="img/avatars/char_511_asnipe_1.png" alt="" onClick="set(this)"/>
 </div>
 </body>
 </html>
