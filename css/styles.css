@@ -126,15 +126,6 @@ header {
 	background-size: auto 1103%;
 }
 
-.level-num {
-	font-family: 'Noto Sans SC', sans-serif;
-	color: #fff;
-	font-size: 60px;
-	font-weight: 500;
-	position: absolute;
-	margin: -60px 80px;
-}
-
 .user-info .name {
 	font-family: 'Noto Sans SC', sans-serif;
 	color: #fff;

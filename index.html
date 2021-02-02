@@ -132,293 +132,277 @@
 
 </head>
 
-<body onKeyDown="keypress(event)">
-	<!--
-	  -- originAuthor: Mashiro
-	  -- originSite: https://2heng.xin
-	  -- Author: xu_zh, AKA ngc7331
-	  -- License: MIT
-	  -->
-	<audio src="https://music.163.com/song/media/outer/url?id=1371757760.mp3" id="bgm" data-netease="true" onError="reset_bgmsrc()" onEnded="bgm_end()"></audio>
-	
-	<div class="loader-layer" id="loader-layer">
-		<div class="tips" id="github_pages_tips">Tips: 如果加载速度过慢可以使用代理（本页托管于 GitHub Pages）。</div>
-		<script>
-			var hostname = window.location.hostname;
-			if(hostname.search("github.io") == -1){
-				document.getElementById("github_pages_tips").style = "display: none;";
-			}
-		</script>
-		<div class="loader" id="loader">
-			<div class="bar">
-				<div class="circle"></div>
-				<p>Loading</p>
-			</div>
-		</div>
-	</div>
-	
-	<header>
-		<div class="level-box-container">
-			<div class="level-box" id="level-box-adapter">
-				<div class="level-logo"></div>
-				<div class="user-level">
-					<div class="level-chart">
-						<div class="chart-bg" id="chart-bg"></div>
-						<div class="chart-pr" id="chart-pr"></div>
-						<div class="level-num" id="level-num">64</div>
-					</div>
-				</div>
-				<div class="user-info">
-					<div class="name" id="username">Mashiro</div>
-					<div class="id" id="userid">ID: 37040126</div>
-				</div>
-			</div>
-		</div>
-	</header>
+<body onKeydown="keypress(event)">
+  <div class="loader-layer" id="loader-layer">
+  	<div class="tips" id="github_pages_tips">Tips: 如果加载速度过慢可以使用代理（本页托管于 GitHub Pages）。</div>
+  	<script>
+		  var hostname = window.location.hostname;
+		  if(hostname.search("github.io") == -1){
+		  	document.getElementById("github_pages_tips").style = "display: none;";
+		  }
+    </script>
+  	<div class="loader" id="loader">
+  		<div class="bar">
+  			<div class="circle"></div>
+  			<p>Loading</p>
+  		</div>
+  	</div>
+  </div>
+<!--
+-- originAuthor: Mashiro
+-- Author: xu_zh, AKA ngc7331
+-- License: MIT
+-->
+  <div id="app">
+    <audio :src="bgm.src" id="bgm" data-netease="true" onError="reset_bgmsrc()" onEnded="bgm_end()" :volume.prop="volume/100"></audio>
+  	<header>
+  		<div class="level-box-container">
+  			<div class="level-box" id="level-box-adapter">
+  				<div class="level-logo"></div>
+  				<div class="user-level">
+  					<div class="level-chart">
+  						<div class="chart-bg" id="chart-bg"></div>
+  						<div class="chart-pr" id="chart-pr"></div>
+  						<div class="level-num" :style="level_num_style">{{userlv}}</div>
+  					</div>
+  				</div>
+  				<div class="user-info">
+  					<div class="name">{{username}}</div>
+  					<div class="id">ID: {{userid}}</div>
+  				</div>
+  			</div>
+  		</div>
+  	</header>
+  
+  	<div id="view-box" class="view-box">
+  		<div id="mark" class="mark" data-pointer-events="true">
+  			<div id="bg-layer" class="layer" data-depth="0.0">
+  				<img id="bg-img" class="cover" src="img/ui/UI_HOME_FRONT_BKG.png" alt=""/>
+  			</div>
+  			<div id="char-arts-layer" class="layer" data-depth="0.01">
+  				<div class="char perspective box">
+  					<img src="img/characters/char_010_chen_2.png" alt="" id="chara"/>
+  				</div>
+  			</div>
+  			<div id="left-menu-layer" class="layer" data-depth="0.2">
+  				<div class="left menu box">
+  					<div class="container" id="left-mune-adapter">
+  						<div class="top">
+  							<div class="dialog">
+  								<span id="dialog">{{dialog}}</span>
+  							</div>
+  						</div>
+  						<div class="bottom">
+  							<div class="left">
+  								<div class="activity-img" id="activity_banner" style="background-position: -14px -38px"></div>
+  							</div>
+  							<div class="right">
+  								<div class="pos-1" @click="boxSwitch('settingBox')" onMouseOver="mouseover('friends')" onMouseOut="mouseout('friends')">
+  									<div class="friends">
+  										<div class="icon"></div>
+  										<div class="text" id="friends_text">好友</div>
+  									</div>
+  								</div>
+  								<div class="pos-2" @click="boxSwitch('infoBox')">
+  									<div class="information">
+  										<div class="icon"></div>
+  										<div class="text">情报</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		<div id="right-menu-layer" class="layer" data-depth="0.2">
+  				<div class="right menu box">
+  					<div class="popup" id="right-mune-popup-adapter"></div>
+  					<div class="container" id="right-mune-adapter">
+  						<div class="pos-1">
+  							<div class="top">
+  								<div class="line-left"></div>
+  								<div class="battery"></div>
+  								<div class="time" id="time">2019/06/05 22:33</div>
+  								<div class="line-right"></div>
+  							</div>
+  							<div class="bottom">
+  								<div class="bg"></div>
+  								<div class="status">
+  									<div class="item money">
+  										<div class="icon"></div>
+  										<div class="amount" id="money">{{money}}</div>
+  									</div>
+  									<div class="item jasper">
+  										<div class="icon"></div>
+  										<div class="amount" id="jasper">{{jasper}}</div>
+  										<div class="more" @click="boxSwitch('settingBox')"></div>
+  									</div>
+  									<div class="item stone">
+  										<div class="icon"></div>
+  										<div class="amount" id="stone">{{stone}}</div>
+  										<div class="more" @click="boxSwitch('settingBox')"></div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  						<div class="pos-2" onClick="bgm_switch()" onMouseOver="mouseover('bgm')" onMouseOut="mouseout('bgm')">
+  							<div class="intellect">
+  								<div class="icon"></div>
+  								<div class="content">
+  									<div class="figure" onClick="bgm_switch()" @click="boxSwitch('bgmBox')">
+  										<div class="value" id="figure_value">{{figure_value}}</div>
+  										<div class="total" id="figure_total">\{{figure_total}}</div>
+  									</div>
+  									<div class="battle">
+  										<div class="text" id="battletext">作战</div>
+  										<div class="current">当前</div>
+  										<div class="level" id="battlelv">{{battlelv}}</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  						<div class="pos-3">
+  							<div class="team" @click="boxSwitch('offsetBox')">
+  								<div class="icon"></div>
+  								<div class="text">编队</div>
+  							</div>
+  							<div class="member" @click="boxSwitch('charBox')">
+  								<div class="icon"></div>
+  								<div class="text">干员</div>
+  								<div class="desc">角色管理</div>
+  							</div>
+  							<div class="blank"></div>
+  						</div>
+  						<div class="pos-4">
+  							<div class="shop" @click="boxSwitch('devBox')">
+  								<div class="icon"></div>
+  								<div class="text">采购中心</div>
+  							</div>
+  							<div class="gamble">
+  								<div class="top">
+  									<div class="icon"></div>
+  									<div class="text">招募</div>
+  								</div>
+  								<div class="bottom" @click="boxSwitch('devBox')">
+  									<div class="left">
+  										<div class="icon"></div>
+  										<div class="text">公开招募</div>
+  									</div>
+  									<div class="right" @click="boxSwitch('devBox')">
+  										<div class="icon"></div>
+  										<div class="text">干员寻访</div>
+  									</div>
+  								</div>
+  							</div>
+  						</div>
+  						<div class="pos-5">
+  							<div class="task" @click="boxSwitch('devBox')">
+  								<div class="icon"></div>
+  								<div class="text">任务</div>
+  							</div>
+  							<div class="infrastructure" @click="boxSwitch('devBox')">
+  								<div class="icon"></div>
+  								<div class="text">基建</div>
+  								<div class="beta"></div>
+  							</div>
+  							<div class="warehouse" @click="boxSwitch('devBox')">
+  								<div class="icon"></div>
+  								<div class="text">仓库</div>
+  							</div>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		<div class="layer" id="middle-menu-layer" data-depth="0.3">
+  		  <div class="middle menu box">
+  		    <div :class="boxes.infoBox"> 
+  				<ul class="text">
+  					<li>原作者：mashirozx</li>
+  					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
+  					<li>修改：小造xu_zh</li>
+  					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.site/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
+  					<li style="font-size: 2vmin;">Main:
+  						<ul>
+  							<li>Version 2.0</li>
+  							<li>Updated 2021/02/02</li>
+  							<li>Copyright ©2019 <a href="https://github.com/mashirozx/arknights-ui/" target="_blank">Mashiro</a></li>
+  							<li>Portions copyright ©2020 <a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank">xu_zh</a></li>
+  							<li>Released under the <a href="https://github.com/ngc7331/arknights-ui-remastered/blob/master/LICENSE" target="_blank">MIT</a> License.</li>
+  						</ul>
+  					</li>
+  					<br>
+  					<li style="font-size: 2vmin;">Art：
+  						<ul>
+  							<li>Version 1.1.80</li>
+  							<li>Updated 2020/08/25</li>
+  							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
+  						</ul>
+  					</li>
+  					<br>
+  					<li style="font-size: 2vmin;">Audio：
+  						<ul>
+  							<li>Updated 2020/08/28</li>
+  							<li>Powered by<a href="https://music.163.com" target="_blank"> 网易云音乐 </a></li>
+  							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
+  						</ul>
+  					</li>
+  				</ul>
+  		    </div>
+  		    <div :class="boxes.settingBox">
+  				<ul class="text">
+  					<li>昵称：<input type="text" v-model="username"></li>
+  					<li>ID：<input type="number" v-model="userid"></li>
+  					<li>Level：<input type="number" min="1" max="120" v-model="userlv"></li>
+  					<li>作战进度：<input type="text" v-model="battlelv"></li>
+  					<li>龙门币：<input type="text" v-model="money"></li>
+  					<li>合成玉：<input type="text" v-model="jasper"></li>
+  					<li>至纯源石：<input type="text" v-model="stone"></li>
+  					<li>对话：<input type="text" v-model="dialog"></li>
+  					<li>理智上限：<input type="number" v-model="figure_total"></li>
+  					<button @click="boxSwitch('settingBox')">确认</button>
+            <button onClick="reset()">重置内存</button>
+  				</ul>
+  			</div>
+  			<div :class="boxes['charBox']" @click="boxSwitch('charBox')">
+  				<iframe src="set_character.html" width="100%" height="500vh" scrolling="auto"></iframe>
+  			</div>
+  			<div :class="boxes['bgmBox']">
+  				<ul class="text">
+  					<li><div>正在播放：{{bgm.name}}</div></li>
+  					<div id="bgm_btn">
+  						<li>
+  							<button @click="changeBGM(-1)">上一首</button>
+  				      <button @click="changeBGM(1)">下一首</button>
+  							<button @click="changeBGM(0)">默认</button>
+  						</li>
+  						<!--<li>推荐歌单<input type="checkbox" id="ngc7331_selected_bgm" checked></li>-->
+  						<li>单曲循环<input type="checkbox" :checked="bgm_loop"></li>
+  			    	</div>
+  					<br>
+  					<li>0<input type="range" min="0" max="100" v-model="volume">100</li>
+  					<li>当前音量：{{volume}}%</li>
+  					<br>
+  					<li style="font-size: 2vmin;">Tips: 可以使用[空格键]控制播放/暂停<br>[方向键↑/↓]控制音量大小<br>[方向键←/→]控制上下首哦</li>
+  				</ul>
+  			</div>
+  			<div :class="boxes['offsetBox']">
+  				<ul class="text">
+  					<li>调整干员立绘位置<button onClick="reset_char_offset()">重置</button></li>
+  					<li>x轴<input type="range" min="-80" max="220" value="70" id="offsetX" onMouseMove="char_offset()"></li>
+  					<li>y轴<input type="range" min="-170" max="130" value="-20" id="offsetY" onMouseMove="char_offset()"></li>
+  				</ul>
+  			</div>
+  			<div :class="boxes['devBox']">
+  				<div class="text">
+  					该区域正在开发中......
+  				</div>
+  			</div>
+            </div>
+  	    </div>
+        </div>
+  	</div>
+  </div>
 
-	<div id="view-box" class="view-box">
-		<div id="mark" class="mark" data-pointer-events="true">
-			<div id="bg-layer" class="layer" data-depth="0.0">
-				<img id="bg-img" class="cover" src="img/ui/UI_HOME_FRONT_BKG.png" alt=""/>
-			</div>
-			<div id="char-arts-layer" class="layer" data-depth="0.01">
-				<div class="char perspective box">
-					<img src="img/characters/char_010_chen_2.png" alt="" id="chara"/>
-				</div>
-			</div>
-			<div id="left-menu-layer" class="layer" data-depth="0.2">
-				<div class="left menu box">
-					<div class="container" id="left-mune-adapter">
-						<div class="top">
-							<div class="dialog">
-								<span id="dialog">博士？睡着了？哼，真没紧张感。</span>
-							</div>
-						</div>
-						<div class="bottom">
-							<div class="left">
-								<div class="activity-img" id="activity_banner" style="background-position: -14px -38px"></div>
-							</div>
-							<div class="right">
-								<div class="pos-1" onClick="box_switch('settingBox')" onMouseOver="mouseover('friends')" onMouseOut="mouseout('friends')">
-									<div class="friends">
-										<div class="icon"></div>
-										<div class="text" id="friends_text">好友</div>
-									</div>
-								</div>
-								<div class="pos-2" onClick="box_switch('infoBox')">
-									<div class="information">
-										<div class="icon"></div>
-										<div class="text">情报</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<div id="right-menu-layer" class="layer" data-depth="0.2">
-				<div class="right menu box">
-					<div class="popup" id="right-mune-popup-adapter"></div>
-					<div class="container" id="right-mune-adapter">
-						<div class="pos-1">
-							<div class="top">
-								<div class="line-left"></div>
-								<div class="battery"></div>
-								<div class="time" id="time">2019/06/05 22:33</div>
-								<div class="line-right"></div>
-							</div>
-							<div class="bottom">
-								<div class="bg"></div>
-								<div class="status">
-									<div class="item money">
-										<div class="icon"></div>
-										<div class="amount" id="money">1000</div>
-									</div>
-									<div class="item jasper">
-										<div class="icon"></div>
-										<div class="amount" id="jasper">1000</div>
-										<div class="more" onClick="box_switch('settingBox')"></div>
-									</div>
-									<div class="item stone">
-										<div class="icon"></div>
-										<div class="amount" id="stone">1000</div>
-										<div class="more" onClick="box_switch('settingBox')"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="pos-2" onClick="bgm_switch()" onMouseOver="mouseover('bgm')" onMouseOut="mouseout('bgm')">
-							<div class="intellect">
-								<div class="icon"></div>
-								<div class="content">
-									<div class="figure" onClick="bgm_switch();box_switch('bgmBox')">
-										<div class="value" id="figure_value">125</div>
-										<div class="total" id="figure_total">\125</div>
-									</div>
-									<div class="battle">
-										<div class="text" id="battletext">作战</div>
-										<div class="current">当前</div>
-										<div class="level" id="battlelv">5-10 长夜终尽</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="pos-3">
-							<div class="team" onClick="box_switch('offsetBox')">
-								<div class="icon"></div>
-								<div class="text">编队</div>
-							</div>
-							<div class="member" onClick="box_switch('charBox')">
-								<div class="icon"></div>
-								<div class="text">干员</div>
-								<div class="desc">角色管理</div>
-							</div>
-							<div class="blank"></div>
-						</div>
-						<div class="pos-4">
-							<div class="shop" onClick="box_switch('devBox')">
-								<div class="icon"></div>
-								<div class="text">采购中心</div>
-							</div>
-							<div class="gamble">
-								<div class="top">
-									<div class="icon"></div>
-									<div class="text">招募</div>
-								</div>
-								<div class="bottom" onClick="box_switch('devBox')">
-									<div class="left">
-										<div class="icon"></div>
-										<div class="text">公开招募</div>
-									</div>
-									<div class="right" onClick="box_switch('devBox')">
-										<div class="icon"></div>
-										<div class="text">干员寻访</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="pos-5">
-							<div class="task" onClick="box_switch('devBox')">
-								<div class="icon"></div>
-								<div class="text">任务</div>
-							</div>
-							<div class="infrastructure" onClick="box_switch('devBox')">
-								<div class="icon"></div>
-								<div class="text">基建</div>
-								<div class="beta"></div>
-							</div>
-							<div class="warehouse" onClick="box_switch('exportBox')" onMouseOver="mouseover('warehouse')" onMouseOut="mouseout('warehouse')">
-								<div class="icon"></div>
-								<div class="text" id="warehouse_text">仓库</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<div class="layer" id="middle-menu-layer" data-depth="0.3">
-		  <div class="middle menu box">
-		    <div class="hidden" id="infoBox"> 
-				<ul class="text">
-					<li>原作者：mashirozx</li>
-					<a href="https://github.com/mashirozx/arknights-ui/" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/2960337711" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://2heng.xin/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
-					<li>修改：小造xu_zh</li>
-					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.top:4443/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
-					<li style="font-size: 2vmin;">Main:
-						<ul>
-							<li>Version 1.4.1</li>
-							<li>Updated 2020/08/28</li>
-							<li>Copyright ©2019 <a href="https://github.com/mashirozx/arknights-ui/" target="_blank">Mashiro</a></li>
-							<li>Portions copyright ©2020 <a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank">xu_zh</a></li>
-							<li>Released under the <a href="https://github.com/ngc7331/arknights-ui-remastered/blob/master/LICENSE" target="_blank">MIT</a> License.</li>
-						</ul>
-					</li>
-					<br>
-					<li style="font-size: 2vmin;">Art：
-						<ul>
-							<li>Version 1.1.80</li>
-							<li>Updated 2020/08/25</li>
-							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
-						</ul>
-					</li>
-					<br>
-					<li style="font-size: 2vmin;">Audio：
-						<ul>
-							<li>Updated 2020/08/28</li>
-							<li>Powered by<a href="https://music.163.com" target="_blank"> 网易云音乐 </a></li>
-							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
-						</ul>
-					</li>
-				</ul>
-		    </div>
-		    <div class="hidden" id="settingBox">
-				<ul class="text">
-					<li>昵称：<input type="text" id="new_username" value="小造xu_zh"></li>
-					<li>ID：<input type="number" id="new_userid" value="27975991"></li>
-					<li>Level：<input type="number" id="new_level-num" value="104"></li>
-					<li>作战进度：<input type="text" id="new_battlelv" value="7-18 爱国者之死"></li>
-					<li>龙门币：<input type="text" id="new_money" value="+∞"></li>
-					<li>合成玉：<input type="text" id="new_jasper" value="+∞"></li>
-					<li>至纯源石：<input type="text" id="new_stone" value="+∞"></li>
-					<li>对话：<input type="text" id="new_dialog" value="自由的生活，吵闹的伙伴，虽然总给我带来麻烦，不过......我现在觉得这样也不坏。"></li>
-					<li>理智上限：<input type="number" id="new_figure_total" value="130"></li>
-					<button onClick="user()">确认</button>
-				</ul>
-			</div>
-			<div class="hidden" id="charBox" onClick="box_switch('charBox')">
-				<iframe src="set_character.html" width="100%" height="500vh" scrolling="auto"></iframe>
-			</div>
-			<div class="hidden" id="bgmBox">
-				<ul class="text">
-					<li><div id="bgm_name">正在播放：生命流</div></li>
-					<div id="bgm_btn">
-						<li>
-							<button onClick="change_bgm('prv')">上一首</button>
-				    		<button onClick="change_bgm('nxt')">下一首</button>
-							<button onClick="change_bgm('ori')">默认</button>
-						</li>
-						<!--<li>推荐歌单<input type="checkbox" id="ngc7331_selected_bgm" checked></li>-->
-						<li>单曲循环<input type="checkbox" id="bgm_loop" checked></li>
-			    	</div>
-					<br>
-					<li>0<input type="range" min="0" max="100" value="20" onMouseMove="update_vol_display();bgm_volume(this.value)" id="set_volume">100</li>
-					<li id="vol_display">当前音量：20%</li>
-					<br>
-					<li style="font-size: 2vmin;">Tips: 可以使用[空格键]控制播放/暂停<br>[方向键↑/↓]控制音量大小<br>[方向键←/→]控制上下首哦</li>
-				</ul>
-			</div>
-			<div class="hidden" id="exportBox">
-				<ul class="text">
-					<li style="font-size: 2vmin;">请点击导出设置并全选复制并保存右侧文本框的内容</li>
-					<li>
-						<button onClick="export_to_obj()">导出设置</button>
-						<input type="text" readonly value="请点击左侧按钮" id="export_obj">
-					</li>
-					<br>
-					<li style="font-size: 2vmin;">或在下方文本框填入导出的内容并点击导入设置</li>
-					<li>
-						<input type="text" id="import_obj">
-						<button onClick="import_from_obj()">导入设置</button>
-					</li>
-				</ul>
-			</div>
-			<div class="hidden" id="offsetBox">
-				<ul class="text">
-					<li>调整干员立绘位置<button onClick="reset_char_offset()">重置</button></li>
-					<li>x轴<input type="range" min="-80" max="220" value="70" id="offsetX" onMouseMove="char_offset()"></li>
-					<li>y轴<input type="range" min="-170" max="130" value="-20" id="offsetY" onMouseMove="char_offset()"></li>
-				</ul>
-			</div>
-			<div class="hidden" id="devBox">
-				<div class="text">
-					该区域正在开发中......
-				</div>
-			</div>
-          </div>
-	    </div>
-      </div>
-	</div>
-
-	<script>bgm_volume(20);//Initialize the volume</script>
 	<script>
 		/* loader */
 		(function() {
@@ -426,10 +410,42 @@
 		})();
 
 	</script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="js/app.js"></script>
+	
+  <script>
+    //加载后读取数据
+    data = ['volume', 'username', 'userid', 'userlv', 'battlelv', 'money', 'jasper', 'stone', 'dialog', 'figure_total'];
+    for (var i = 0; i<data.length; i++) {
+      if (localStorage.getItem(data[i]) != null) {
+        app[data[i]] = localStorage.getItem(data[i]);
+      }
+    }
+    //关闭时保存数据
+    var save_enabled = true;
+    function reset () {
+      save_enabled = false;
+      localStorage.clear();
+      window.location.reload();
+    }
+    window.onbeforeunload = function () {
+      if(save_enabled){
+        for (var i = 0; i<data.length; i++) {
+          localStorage.setItem(data[i], app[data[i]]);
+        }
+      }
+    }
+    //窗口大小改变
+    window.onresize = function () {
+      window.location.reload();
+    }
+  </script>
+  
 	<script src="js/src/jquery-3.5.0.min.js?v=1.0"></script>
 	<script src="js/src/jquery.pjax.js?v=1.0"></script>
 	<script src="js/src/GYST.js?v=1.0"></script>
 	<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
-	<script src="js/scripts.js?v=1.1"></script>
+  <script src="js/scripts.js?v=1.1"></script>
 </body>
 </html>
