@@ -1,7 +1,11 @@
 # 小造的BB
-作为一个h5、css外加javascript的三重初学者和一个学生党，我因为对明日方舟的厨力开始尝试更新此项目。
+作为一个h5、css、javascript外加vue.js的四重初学者（要学的怎么越来越多了啊喂）和一个学生党，我因为对明日方舟的厨力开始尝试更新此项目。
 
 如果您对于我有任何建议（包括使用Github的方式、写代码的格式、命名规范等等）请不吝赐教，谢谢。
+
+2021/02/02起开始尝试用vue重写部分功能，大幅度简化代码，并已将vue分支作为默认分支。
+
+原始版本（最后于2020/08/28更新）请见[master分支](https://github.com/ngc7331/arknights-ui-remastered/tree/master)。
 
 ## 目前实现的功能
 “情报”：作者信息
@@ -42,7 +46,7 @@
 
 国内请尝试gitee：<https://xu_zh.gitee.io/arknights-ui-remastered/>
 
-# 下面是原文
+# 下面是原作者相关信息
 # Arknights UI：H5 + CSS 复刻明日方舟主界面
 ![screenshot](screenshot.png)
 
