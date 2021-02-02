@@ -152,6 +152,8 @@ function change_bgm(type){
 		"1470071584",
 		"1473615377",
 		"1473615924",
+		"1481447983",
+		"1485858993",
 	];
 	var arr_name = [
 		"生命流",//生命流排序提前
@@ -191,6 +193,8 @@ function change_bgm(type){
 		"El Brillo Solitario",
 		"Evolutionary Mechanization",
 		"ALIVE",
+		"Reconnection",
+		"秋绪",
 	];
 	/*if(document.getElementById("ngc7331_selected_bgm").checked){
 		arr_id = [
