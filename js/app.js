@@ -23,12 +23,19 @@ var app = new Vue({
       offsetBox: 'hidden',
       devBox: 'hidden'
     },
-    text_stat: {
+    text_index: {
       friends: 0,
       battle: 0,
       information: 0,
       team: 0,
       member: 0,
+    },
+    texts: {
+      friends: ['好友', '设置'],
+      battle: ['作战', '播放', '暂停', '已暂停', '开始播放'],
+      information: ['档案', '信息'],
+      team: ['编队', '调整位置'],
+      member: ['角色', '选择角色'],
     },
     bgm_index: 0,
     bgm_loop: true,
@@ -110,26 +117,8 @@ var app = new Vue({
   },
   computed: {
     text: function () {
-      var obj = {
-        friends: '',
-        battle: '',
-        information: '',
-      };
-      if (this.text_stat.friends == 0) obj.friends = '好友';
-      else obj.friends = '设置';
-      switch (this.text_stat.battle){
-        case 0: obj.battle = '作战'; break;
-        case 1: obj.battle = '播放'; break;
-        case 2: obj.battle = '暂停'; break;
-        case 3: obj.battle = '已暂停'; break;
-        case 4: obj.battle = '开始播放';
-      }
-      if (this.text_stat.information == 0) obj.information = '档案';
-      else obj.information = '情报';
-      if (this.text_stat.team == 0) obj.team = '编队';
-      else obj.team = '调整位置';
-      if (this.text_stat.member == 0) obj.member = '角色';
-      else obj.member = '选择角色';
+      var obj = {};
+      for (let t in this.texts) obj[t] = this.texts[t][this.text_index[t]];
       return obj;
     },
     bgm: function () {
@@ -164,33 +153,26 @@ var app = new Vue({
       return Object.assign(obj1, obj2);
     },
     char_arts_layer: function () {
-      return {
-	     left: '70px !important',
-	     top: '-20px !important'
-      }
+      return { left: '70px !important', top: '-20px !important' };
     }
   },
   watch: {
-    char_offsetX: function () {
-      this.setOffset();
-    },
-    char_offsetY: function () {
-      this.setOffset();
-    },
+    char_offsetX: function () { this.setOffset(); },
+    char_offsetY: function () { this.setOffset(); },
   },
   methods: {
     setText: function (obj, over) {
       if (obj == 'battle') {
         if (over) {
           var audio = document.getElementById("bgm");
-          if (audio.paused) this.text_stat.battle = 1+this.bgm_keyboard;
-          else this.text_stat.battle = 2+this.bgm_keyboard;
+          if (audio.paused) this.text_index.battle = 1+this.bgm_keyboard;
+          else this.text_index.battle = 2+this.bgm_keyboard;
         }
-        else this.text_stat.battle = 0;
+        else this.text_index.battle = 0;
       }
       else {
-        if (over) this.text_stat[obj] = 1;
-        else this.text_stat[obj] = 0;
+        if (over) this.text_index[obj] = 1;
+        else this.text_index[obj] = 0;
       }
     },
     boxSwitch: function (obj) {
@@ -201,7 +183,7 @@ var app = new Vue({
       else{ this.boxes[obj] = 'hidden'; }
     },
     closeBoxes: function () {
-      for (let box in this.boxes) { this.boxes[box] = 'hidden'; }
+      for (let box in this.boxes) this.boxes[box] = 'hidden';
     },
     playBGM: function (keyboard) {
       var audio = document.getElementById("bgm");
@@ -209,7 +191,7 @@ var app = new Vue({
       else audio.pause();
       this.bgm_keyboard = keyboard;
       this.setText('battle', true);
-      if (keyboard) setTimeout(function () {app.text_stat.battle = 0; app.bgm_keyboard = 0; }, 500);
+      if (keyboard) setTimeout(function () {app.text_index.battle = 0; app.bgm_keyboard = 0; }, 500);
     },
     changeBGM: function (m) {
       if (m == 0) { this.bgm_index = 0; }
@@ -228,7 +210,9 @@ var app = new Vue({
       app.closeBoxes();
     },
     setOffset: function () {
-      var cssText = $("#char-arts-layer").attr("style") + "; left:" + this.char_offsetX + "px !important; top:" + this.char_offsetY + "px !important;";
+      var cssText = $("#char-arts-layer").attr("style")+";"
+          + "left:" + this.char_offsetX + "px !important;"
+          + "top:" + this.char_offsetY + "px !important;";
       $("#char-arts-layer").css("cssText", cssText);
     },
     resetOffset: function () {

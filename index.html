@@ -11,7 +11,6 @@
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 	<link rel="stylesheet" href="css/normalize.css?v=1.0">
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
-	<script src="js/button.js"></script>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<style>
 		/* loader */
@@ -442,32 +441,15 @@
     }
     //按键
     window.onkeydown = function (event) {
-      if(app.boxes['settingBox'] == "container" && event.keyCode!=27){
-        return;
-      }
+      if(app.boxes['settingBox'] == "container" && event.keyCode!=27) return; //打开设置界面后只相应esc键
       switch(event.keyCode){
-        case 32: //space
-          app.playBGM(2);
-          break;
-        case 38: //up
-          app.volume = Math.min(app.volume+1, 100);
-          break;
-        case 40: //down
-          app.volume = Math.max(app.volume-1, 0);
-          break;
-        case 37: //left
-          app.changeBGM(-1);
-          break;
-        case 39: //right
-          app.changeBGM(1);
-          break;
-        case 27: //esc
-          app.closeBoxes();
-          break;
-        case 13: //enter
-          //debug
+        case 32: app.playBGM(2); break; //space
+        case 38: app.volume = Math.min(app.volume+1, 100); break; //up
+        case 40: app.volume = Math.max(app.volume-1, 0); break; //down
+        case 37: app.changeBGM(-1); break; //left
+        case 39: app.changeBGM(1); break; //right
+        case 27: app.closeBoxes(); break; //esc
       }
-      console.log("keypress "+event.keyCode);
     }
   </script>
 </body>
