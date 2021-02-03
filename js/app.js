@@ -104,7 +104,7 @@ var app = new Vue({
       {id: '1813556337', name: '奇兵天坠' },
     ],
     bgm_keyboard: 0,
-    char_src: 'img/avatars/char_002_amiya_1.png',
+    char_src: 'img/characters/char_002_amiya_1.png',
     char_offsetX: 70,
     char_offsetY: -20,
   },
