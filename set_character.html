@@ -18,7 +18,7 @@
 <script>
 	function set(obj){
 		character = obj.src.match("char_.*\.png")[0];
-		window.parent.set_char(character);
+		window.parent.app.setChar(character);
 	}
 	function display(){
 		if(document.getElementById("display").checked){

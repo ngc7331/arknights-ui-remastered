@@ -4,41 +4,15 @@
 
 <head>
 	<meta charset="utf-8">
-
 	<title>Arknights-ui</title>
 	<meta name="description" content="Arknights-ui">
 	<meta name="originauthor" content="Mashiro">
 	<meta name="author" content="xu_zh">
-
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-
-	<!--[if lt IE 9]>
-	<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
 	<link rel="stylesheet" href="css/normalize.css?v=1.0">
 	<link rel="stylesheet" href="css/styles.css?v=1.0">
-	
 	<script src="js/button.js"></script>
-	
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	
-	<!--<script async src="https://s96.cnzz.com/z_stat.php?id=1277700683&web_id=1277700683"></script>-->
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100439904-7"></script>-->
-	<!--<script>
-		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-100439904-7');
-
-	</script>-->
-
 	<style>
 		/* loader */
 		.loader-layer {
@@ -132,7 +106,7 @@
 
 </head>
 
-<body onKeydown="keypress(event)">
+<body>
   <div class="loader-layer" id="loader-layer">
   	<div class="tips" id="github_pages_tips">Tips: 如果加载速度过慢可以使用代理（本页托管于 GitHub Pages）。</div>
   	<script>
@@ -154,7 +128,7 @@
 -- License: MIT
 -->
   <div id="app">
-    <audio :src="bgm.src" id="bgm" data-netease="true" onError="reset_bgmsrc()" onEnded="bgm_end()" :volume.prop="volume/100"></audio>
+    <audio :src="bgm.src" id="bgm" @ended="bgmEnd()" :volume.prop="volume/100"></audio>
   	<header>
   		<div class="level-box-container">
   			<div class="level-box" id="level-box-adapter">
@@ -181,7 +155,7 @@
   			</div>
   			<div id="char-arts-layer" class="layer" data-depth="0.01">
   				<div class="char perspective box">
-  					<img src="img/characters/char_010_chen_2.png" alt="" id="chara"/>
+  					<img :src="char_src" alt=""/>
   				</div>
   			</div>
   			<div id="left-menu-layer" class="layer" data-depth="0.2">
@@ -194,19 +168,19 @@
   						</div>
   						<div class="bottom">
   							<div class="left">
-  								<div class="activity-img" id="activity_banner" style="background-position: -14px -38px"></div>
+  								<div class="activity-img" id="activity_banner" style="background-position: -16px -10px"></div>
   							</div>
   							<div class="right">
-  								<div class="pos-1" @click="boxSwitch('settingBox')" onMouseOver="mouseover('friends')" onMouseOut="mouseout('friends')">
+  								<div class="pos-1" @click="boxSwitch('settingBox')" @MouseOver="setText('friends', true)" @MouseOut="setText('friends', false)">
   									<div class="friends">
   										<div class="icon"></div>
-  										<div class="text" id="friends_text">好友</div>
+  										<div class="text">{{text.friends}}</div>
   									</div>
   								</div>
-  								<div class="pos-2" @click="boxSwitch('infoBox')">
+  								<div class="pos-2" @click="boxSwitch('infoBox')" @MouseOver="setText('information', true)" @MouseOut="setText('information', false)">
   									<div class="information">
   										<div class="icon"></div>
-  										<div class="text">情报</div>
+  										<div class="text">{{text.information}}</div>
   									</div>
   								</div>
   							</div>
@@ -245,16 +219,16 @@
   								</div>
   							</div>
   						</div>
-  						<div class="pos-2" onClick="bgm_switch()" onMouseOver="mouseover('bgm')" onMouseOut="mouseout('bgm')">
+  						<div class="pos-2" @click="playBGM(0)" @MouseOver="setText('battle', true)" @MouseOut="setText('battle', false)">
   							<div class="intellect">
   								<div class="icon"></div>
   								<div class="content">
-  									<div class="figure" onClick="bgm_switch()" @click="boxSwitch('bgmBox')">
+  									<div class="figure" @click="boxSwitch('bgmBox'); playBGM(0)">
   										<div class="value" id="figure_value">{{figure_value}}</div>
   										<div class="total" id="figure_total">\{{figure_total}}</div>
   									</div>
   									<div class="battle">
-  										<div class="text" id="battletext">作战</div>
+  										<div class="text">{{text.battle}}</div>
   										<div class="current">当前</div>
   										<div class="level" id="battlelv">{{battlelv}}</div>
   									</div>
@@ -262,13 +236,13 @@
   							</div>
   						</div>
   						<div class="pos-3">
-  							<div class="team" @click="boxSwitch('offsetBox')">
+  							<div class="team" @click="boxSwitch('offsetBox')" @MouseOver="setText('team', true)" @MouseOut="setText('team', false)">
   								<div class="icon"></div>
-  								<div class="text">编队</div>
+  								<div class="text">{{text.team}}</div>
   							</div>
-  							<div class="member" @click="boxSwitch('charBox')">
+  							<div class="member" @click="boxSwitch('charBox')" @MouseOver="setText('member', true)" @MouseOut="setText('member', false)">
   								<div class="icon"></div>
-  								<div class="text">干员</div>
+  								<div class="text">{{text.member}}</div>
   								<div class="desc">角色管理</div>
   							</div>
   							<div class="blank"></div>
@@ -323,8 +297,8 @@
   					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.site/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
   					<li style="font-size: 2vmin;">Main:
   						<ul>
-  							<li>Version 2.0</li>
-  							<li>Updated 2021/02/02</li>
+  							<li>Version 2.0 Beta</li>
+  							<li>Updated 2021/02/03</li>
   							<li>Copyright ©2019 <a href="https://github.com/mashirozx/arknights-ui/" target="_blank">Mashiro</a></li>
   							<li>Portions copyright ©2020 <a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank">xu_zh</a></li>
   							<li>Released under the <a href="https://github.com/ngc7331/arknights-ui-remastered/blob/master/LICENSE" target="_blank">MIT</a> License.</li>
@@ -341,7 +315,7 @@
   					<br>
   					<li style="font-size: 2vmin;">Audio：
   						<ul>
-  							<li>Updated 2020/08/28</li>
+  							<li>Updated 2021/01/21</li>
   							<li>Powered by<a href="https://music.163.com" target="_blank"> 网易云音乐 </a></li>
   							<li>Copyright ©2017 <a href="https://ak.hypergryph.com/" target="_blank">上海鹰角网络科技有限公司</a></li>
   						</ul>
@@ -350,14 +324,14 @@
   		    </div>
   		    <div :class="boxes.settingBox">
   				<ul class="text">
-  					<li>昵称：<input type="text" v-model="username"></li>
-  					<li>ID：<input type="number" v-model="userid"></li>
+  					<li>昵称：<input type="text" v-model="username" maxlength="8"></li>
+  					<li>ID：<input type="number" v-model="userid" maxlength="8"></li>
   					<li>Level：<input type="number" min="1" max="120" v-model="userlv"></li>
-  					<li>作战进度：<input type="text" v-model="battlelv"></li>
+  					<li>作战进度：<input type="text" v-model="battlelv" maxlength="20"></li>
   					<li>龙门币：<input type="text" v-model="money"></li>
   					<li>合成玉：<input type="text" v-model="jasper"></li>
   					<li>至纯源石：<input type="text" v-model="stone"></li>
-  					<li>对话：<input type="text" v-model="dialog"></li>
+  					<li>对话：<textarea type="text" v-model="dialog" maxlength="90"></textarea></li>
   					<li>理智上限：<input type="number" v-model="figure_total"></li>
   					<button @click="boxSwitch('settingBox')">确认</button>
             <button onClick="reset()">重置内存</button>
@@ -368,7 +342,7 @@
   			</div>
   			<div :class="boxes['bgmBox']">
   				<ul class="text">
-  					<li><div>正在播放：{{bgm.name}}</div></li>
+  					<li><div>正在播放：</div><div :style="bgm_name_style">{{bgm.name}}</div></li>
   					<div id="bgm_btn">
   						<li>
   							<button @click="changeBGM(-1)">上一首</button>
@@ -376,7 +350,7 @@
   							<button @click="changeBGM(0)">默认</button>
   						</li>
   						<!--<li>推荐歌单<input type="checkbox" id="ngc7331_selected_bgm" checked></li>-->
-  						<li>单曲循环<input type="checkbox" :checked="bgm_loop"></li>
+  						<li>单曲循环<input type="checkbox" v-model="bgm_loop"></li>
   			    	</div>
   					<br>
   					<li>0<input type="range" min="0" max="100" v-model="volume">100</li>
@@ -387,9 +361,10 @@
   			</div>
   			<div :class="boxes['offsetBox']">
   				<ul class="text">
-  					<li>调整干员立绘位置<button onClick="reset_char_offset()">重置</button></li>
-  					<li>x轴<input type="range" min="-80" max="220" value="70" id="offsetX" onMouseMove="char_offset()"></li>
-  					<li>y轴<input type="range" min="-170" max="130" value="-20" id="offsetY" onMouseMove="char_offset()"></li>
+  					<li>调整干员立绘位置<button @click="resetOffset()">重置</button></li>
+  					<li>x轴<input type="range" min="-80" max="220" v-model="char_offsetX"></li>
+  					<li>y轴<input type="range" min="-170" max="130" v-model="char_offsetY"></li>
+            <li style="font-size: 1.5vmin;">重新打开页面可能导致立绘位置读取不成功，请按<button @click="setOffset()">读取</button></li>
   				</ul>
   			</div>
   			<div :class="boxes['devBox']">
@@ -411,15 +386,40 @@
 
 	</script>
   
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+<!--  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
 	<script src="js/app.js"></script>
+	<script src="js/src/jquery-3.5.0.min.js?v=1.0"></script>
+	<script src="js/src/jquery.pjax.js?v=1.0"></script>
+	<script src="js/src/GYST.js?v=1.0"></script>
+	<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
+  <script src="js/scripts.js?v=1.1"></script>
 	
   <script>
     //加载后读取数据
-    data = ['volume', 'username', 'userid', 'userlv', 'battlelv', 'money', 'jasper', 'stone', 'dialog', 'figure_total'];
+    data = [['volume', 'int'],
+            ['username', 'str'],
+            ['userid', 'int'],
+            ['userlv', 'int'],
+            ['battlelv', 'str'],
+            ['money', 'str'],
+            ['jasper', 'str'],
+            ['stone', 'str'],
+            ['dialog', 'str'],
+            ['figure_total', 'int'],
+            ['bgm_loop', 'bool'],
+            ['bgm_index', 'int'],
+            ['char_src', 'str'],
+            ['char_offsetX', 'int'],
+            ['char_offsetY', 'int'],
+           ];
     for (var i = 0; i<data.length; i++) {
-      if (localStorage.getItem(data[i]) != null) {
-        app[data[i]] = localStorage.getItem(data[i]);
+      var key = data[i][0];
+      var type = data[i][1];
+      if (localStorage.getItem(key) != null) {
+        app[key] = localStorage.getItem(key);
+        if (type == 'int') app[key] = parseInt(app[key]);
+        else if (type == 'bool') app[key] = app[key] == 'true';  
       }
     }
     //关闭时保存数据
@@ -432,7 +432,7 @@
     window.onbeforeunload = function () {
       if(save_enabled){
         for (var i = 0; i<data.length; i++) {
-          localStorage.setItem(data[i], app[data[i]]);
+          localStorage.setItem(data[i][0], app[data[i][0]]);
         }
       }
     }
@@ -440,12 +440,35 @@
     window.onresize = function () {
       window.location.reload();
     }
+    //按键
+    window.onkeydown = function (event) {
+      if(app.boxes['settingBox'] == "container" && event.keyCode!=27){
+        return;
+      }
+      switch(event.keyCode){
+        case 32: //space
+          app.playBGM(2);
+          break;
+        case 38: //up
+          app.volume = Math.min(app.volume+1, 100);
+          break;
+        case 40: //down
+          app.volume = Math.max(app.volume-1, 0);
+          break;
+        case 37: //left
+          app.changeBGM(-1);
+          break;
+        case 39: //right
+          app.changeBGM(1);
+          break;
+        case 27: //esc
+          app.closeBoxes();
+          break;
+        case 13: //enter
+          //debug
+      }
+      console.log("keypress "+event.keyCode);
+    }
   </script>
-  
-	<script src="js/src/jquery-3.5.0.min.js?v=1.0"></script>
-	<script src="js/src/jquery.pjax.js?v=1.0"></script>
-	<script src="js/src/GYST.js?v=1.0"></script>
-	<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
-  <script src="js/scripts.js?v=1.1"></script>
 </body>
 </html>

@@ -23,14 +23,21 @@ var app = new Vue({
       offsetBox: 'hidden',
       devBox: 'hidden'
     },
+    text_stat: {
+      friends: 0,
+      battle: 0,
+      information: 0,
+      team: 0,
+      member: 0,
+    },
     bgm_index: 0,
     bgm_loop: true,
     bgm_list: [
       //OST1 12首
-      {id: '1371757760', name: '生命流' },//生命流排序提前
+      {id: '1371757760', name: '生命流' }, //生命流排序提前
       {id: '1371757762', name: 'Synthetech' },
       {id: '1371760675', name: '逃亡 part2' },
-      {id: '1371757759', name: '泛用型自动化解决方案0.3.2.9f2' },//基建
+      {id: '1371757759', name: '泛用型自动化解决方案0.3.2.9f2' }, //基建
       {id: '1371760677', name: '人性' },
       {id: '1371760676', name: '短兵相接' },
       {id: '1371757758', name: '大柏墟' },
@@ -48,7 +55,7 @@ var app = new Vue({
       {id: '1406452570', name: 'Zone 10⁻⁸' },
       {id: '1411527086', name: 'Boiling Blood' },
       {id: '1811693306', name: 'Boiling Blood (伴奏版)' },
-      {id: '1417483463', name: '示岁' },//新年快乐！
+      {id: '1417483463', name: '示岁' }, //新年快乐！
       {id: '1427681638', name: '独行长路' },
       {id: '1428299645', name: 'Operation Barrenland (W&W Soundtrack Mix)' },
       {id: '1431593851', name: '故乡的风' },
@@ -82,7 +89,7 @@ var app = new Vue({
       {id: '1806528693', name: 'Rock the Night Away' },
       {id: '1809117428', name: 'Till the Bell Tolls' },
       {id: '1809781249', name: '冬涤' },
-      //OST2
+      //OST2 12首
       {id: '1813556331', name: '0:00:01' },
       {id: '1813556335', name: '近卫局攻坚小队' },
       {id: '1813557642', name: 'Абсолю́тный нуль температу́ры (absolute zero)' },
@@ -95,9 +102,36 @@ var app = new Vue({
       {id: '1813556350', name: '尘沙扬' },
       {id: '1813556351', name: '尽归霜雪' },
       {id: '1813556337', name: '奇兵天坠' },
-    ]
+    ],
+    bgm_keyboard: 0,
+    char_src: 'img/avatars/char_002_amiya_1.png',
+    char_offsetX: 70,
+    char_offsetY: -20,
   },
   computed: {
+    text: function () {
+      var obj = {
+        friends: '',
+        battle: '',
+        information: '',
+      };
+      if (this.text_stat.friends == 0) obj.friends = '好友';
+      else obj.friends = '设置';
+      switch (this.text_stat.battle){
+        case 0: obj.battle = '作战'; break;
+        case 1: obj.battle = '播放'; break;
+        case 2: obj.battle = '暂停'; break;
+        case 3: obj.battle = '已暂停'; break;
+        case 4: obj.battle = '开始播放';
+      }
+      if (this.text_stat.information == 0) obj.information = '档案';
+      else obj.information = '情报';
+      if (this.text_stat.team == 0) obj.team = '编队';
+      else obj.team = '调整位置';
+      if (this.text_stat.member == 0) obj.member = '角色';
+      else obj.member = '选择角色';
+      return obj;
+    },
     bgm: function () {
         return {
           id: this.bgm_list[this.bgm_index].id,
@@ -108,6 +142,14 @@ var app = new Vue({
     figure_value: function () {
       return parseInt(this.volume * this.figure_total / 100);
     },
+    bgm_name_style: function () {
+      var obj1 = { width: '300px', height: '50px' };
+      var obj2 = {};
+      if (this.bgm.name.length >= 30) obj2 = { fontSize: '1.5vmin' };
+      else if (this.bgm.name.length >= 15) obj2 = { fontSize: '2.25vmin' };
+      else obj2 = { fontSize: '3vmin' };
+      return Object.assign(obj1, obj2);
+    },
     level_num_style: function () {
       var obj1 = {
         fontFamily: 'Noto Sans SC, sans-serif',
@@ -115,20 +157,42 @@ var app = new Vue({
         fontWeight: 500,
         position: 'absolute'
       };
-      var obj2 = {}
-      if (this.userlv >= 100) {
-        obj2 = { fontSize: '50px', margin: '-55px 72px' };
-      }
-      else if (this.userlv >= 10) {
-        obj2 = { fontSize: '60px', margin: '-60px 80px' };
-      }
-      else {
-        obj2 = { fontSize: '60px', margin: '-60px 100px' };
-      }
+      var obj2 = {};
+      if (this.userlv >= 100) obj2 = { fontSize: '50px', margin: '-55px 72px' };
+      else if (this.userlv >= 10) obj2 = { fontSize: '60px', margin: '-60px 80px' };
+      else obj2 = { fontSize: '60px', margin: '-60px 100px' };
       return Object.assign(obj1, obj2);
+    },
+    char_arts_layer: function () {
+      return {
+	     left: '70px !important',
+	     top: '-20px !important'
+      }
     }
   },
+  watch: {
+    char_offsetX: function () {
+      this.setOffset();
+    },
+    char_offsetY: function () {
+      this.setOffset();
+    },
+  },
   methods: {
+    setText: function (obj, over) {
+      if (obj == 'battle') {
+        if (over) {
+          var audio = document.getElementById("bgm");
+          if (audio.paused) this.text_stat.battle = 1+this.bgm_keyboard;
+          else this.text_stat.battle = 2+this.bgm_keyboard;
+        }
+        else this.text_stat.battle = 0;
+      }
+      else {
+        if (over) this.text_stat[obj] = 1;
+        else this.text_stat[obj] = 0;
+      }
+    },
     boxSwitch: function (obj) {
       if (this.boxes[obj] == 'hidden') {
         this.closeBoxes();
@@ -139,6 +203,14 @@ var app = new Vue({
     closeBoxes: function () {
       for (let box in this.boxes) { this.boxes[box] = 'hidden'; }
     },
+    playBGM: function (keyboard) {
+      var audio = document.getElementById("bgm");
+      if (audio.paused) audio.play();
+      else audio.pause();
+      this.bgm_keyboard = keyboard;
+      this.setText('battle', true);
+      if (keyboard) setTimeout(function () {app.text_stat.battle = 0; app.bgm_keyboard = 0; }, 500);
+    },
     changeBGM: function (m) {
       if (m == 0) { this.bgm_index = 0; }
       else {
@@ -147,8 +219,21 @@ var app = new Vue({
         if (this.bgm_index == this.bgm_list.length) {this.bgm_index = 0; }
       }
     },
-    keydown: function () {
-      console.log('233');
+    bgmEnd: function () {
+      if (!this.bgm_loop) this.changeBGM(1);
+      this.playBGM(-2);
+    },
+    setChar: function (obj) {
+      this.char_src = "img/characters/"+obj;
+      app.closeBoxes();
+    },
+    setOffset: function () {
+      var cssText = $("#char-arts-layer").attr("style") + "; left:" + this.char_offsetX + "px !important; top:" + this.char_offsetY + "px !important;";
+      $("#char-arts-layer").css("cssText", cssText);
+    },
+    resetOffset: function () {
+      this.char_offsetX = 70;
+      this.char_offsetY = -20;
     }
   }
 })

@@ -129,7 +129,7 @@ header {
 .user-info .name {
 	font-family: 'Noto Sans SC', sans-serif;
 	color: #fff;
-	font-size: 33px;
+	font-size: 30px;
 	font-weight: 500;
 	position: absolute;
 	margin: 134px 62px;
@@ -329,9 +329,9 @@ header {
 .left.menu.box .container .bottom .left .activity-img {
 	height: 115px;
 	width: 251px;
-	background: url("../img/ui/banner/UI_HOME_ACTIVITY_BANNER_ZONE.png");
+	background: url("../img/ui/banner/SpriteAtlasTexture-UI_HOME_ACT_BANNER_ZONE_4-512x256-fmt34.png");
 	background-repeat: no-repeat;
-	background-size: 238%;
+	background-size: 120%;
 }
 
 .left.menu.box .container .bottom .right .pos-1 .friends {
