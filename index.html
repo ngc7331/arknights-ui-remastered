@@ -393,34 +393,26 @@
 	<script src="js/src/GYST.js?v=1.0"></script>
 	<script src="js/src/parallax.3.1.0.min.js?v=1.0"></script>
   <script src="js/scripts.js?v=1.1"></script>
+  <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script> 
 	
   <script>
-    //加载后读取数据
-    data = [['volume', 'int'],
-            ['username', 'str'],
-            ['userid', 'int'],
-            ['userlv', 'int'],
-            ['battlelv', 'str'],
-            ['money', 'str'],
-            ['jasper', 'str'],
-            ['stone', 'str'],
-            ['dialog', 'str'],
-            ['figure_total', 'int'],
-            ['bgm_loop', 'bool'],
-            ['bgm_index', 'int'],
-            ['char_src', 'str'],
-            ['char_offsetX', 'int'],
-            ['char_offsetY', 'int'],
-           ];
-    for (var i = 0; i<data.length; i++) {
-      var key = data[i][0];
-      var type = data[i][1];
-      if (localStorage.getItem(key) != null) {
-        app[key] = localStorage.getItem(key);
-        if (type == 'int') app[key] = parseInt(app[key]);
-        else if (type == 'bool') app[key] = app[key] == 'true';  
-      }
-    }
+    var data = [['volume', 'int'],
+                ['username', 'str'],
+                ['userid', 'int'],
+                ['userlv', 'int'],
+                ['battlelv', 'str'],
+                ['money', 'str'],
+                ['jasper', 'str'],
+                ['stone', 'str'],
+                ['dialog', 'str'],
+                ['figure_total', 'int'],
+                ['bgm_loop', 'bool'],
+                ['bgm_index', 'int'],
+                ['char_src', 'str'],
+                ['char_offsetX', 'int'],
+                ['char_offsetY', 'int'],
+               ];
+    app.loadData(); //加载后读取数据
     //关闭时保存数据
     var save_enabled = true;
     function reset () {

@@ -207,6 +207,7 @@ header {
 	font-size: 3vmin;
 	font-weight: 800;
 	text-align: left;
+  list-style: none;
 	padding: 1vh;
 }
 
