@@ -3,26 +3,17 @@
 <head>
 <meta charset="utf-8">
 <style>
-  ul{
-    list-style: none;
-  }
 	img{
 		width: 20%;
 		display: block;
 		float: left;
-	}
-	.text{
-		color: aliceblue;
-	}
-	.hidden{
-		display: none
 	}
 </style>
 </head>
 
 <body>
 <div id="app">
-  <img v-for="character in character_list" :src="avatar_src(character)" @click="setChar(character)">
+  <img v-for="char in char_list" :src="avatar_src(char)" @click="setChar(char)" alt="">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
@@ -30,7 +21,7 @@
 <script>
   console.log("load character_list")
   axios.get("data/character_list.json")
-    .then(response => { app.character_list = response.data; })
+    .then(response => { app.char_list = response.data; })
     .catch(function (error) { console.log(error); });
 </script>
 </body>

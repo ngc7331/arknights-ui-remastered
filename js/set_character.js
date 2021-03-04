@@ -5,20 +5,19 @@
 var app = new Vue({
   el: '#app',
   data: {
-    character_list: [],
+    char_list: [],
   },
   computed: {
     avatar_src () {
-      return function(name) {
-        return "img/avatars/char_"+name+".png"
+      return function (char) {
+        return "img/avatars/char_"+char+".png"
       }
     }
   },
   methods: {
-    setChar: function (character) {
-      window.parent.app.char_src = "img/characters/char_"+character+".png";
+    setChar: function (char) {
+      window.parent.app.char_src = "img/characters/char_"+char+".png";
       window.parent.app.closeBoxes();
     }
   }
-  
 })

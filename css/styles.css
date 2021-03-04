@@ -66,6 +66,13 @@ header {
 	color: #fff
 }
 
+.avatar {
+  width: 20px;
+  height: 20px;
+  display: block;
+  float: left;
+}
+
 .social-link {
 	display: inline-block;
 	height: 3vh;
