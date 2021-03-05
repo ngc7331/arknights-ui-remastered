@@ -154,7 +154,7 @@
   			</div>
   			<div id="char-arts-layer" class="layer" data-depth="0.01">
   				<div class="char perspective box">
-  					<img :src="char_src" alt=""/>
+  					<img :src="char_src" alt="" :style="char_zoom_style"/>
   				</div>
   			</div>
   			<div id="left-menu-layer" class="layer" data-depth="0.2">
@@ -296,7 +296,7 @@
   					<a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank"><img src="img/svg/github.svg" class="social-link"> GitHub </a> <a href="https://weibo.com/u/5393262685" target="_blank"><img src="img/svg/weibo.svg" class="social-link"> Weibo </a> <a href="https://ngc7331.site/" target="_blank"><img src="img/svg/wordpress.svg" class="social-link"> Blog </a>
   					<li style="font-size: 2vmin;">Main:
   						<ul>
-  							<li>Version 2.0</li>
+  							<li>Version 2.1</li>
   							<li>Updated 2021/03/05</li>
   							<li>Copyright ©2019 <a href="https://github.com/mashirozx/arknights-ui/" target="_blank">Mashiro</a></li>
   							<li>Portions copyright ©2020 <a href="https://github.com/ngc7331/arknights-ui-remastered" target="_blank">xu_zh</a></li>
@@ -361,8 +361,9 @@
   			<div :class="boxes['offsetBox']">
   				<ul class="text">
   					<li>调整干员立绘位置<button @click="resetOffset()">重置</button></li>
-  					<li>x轴<input type="range" min="-80" max="220" v-model="char_offsetX"></li>
-  					<li>y轴<input type="range" min="-170" max="130" v-model="char_offsetY"></li>
+  					<li>x轴   ←<input type="range" min="-80" max="220" v-model="char_offsetX">→</li>
+  					<li>y轴   ↑<input type="range" min="-170" max="130" v-model="char_offsetY">↓</li>
+  					<li>缩放  0x<input type="range" min="0" max="300" v-model="char_zoom">3x</li>
             <li style="font-size: 1.5vmin;">重新打开页面可能导致立绘位置读取不成功，请按<button @click="setOffset()">读取</button></li>
   				</ul>
   			</div>
@@ -411,6 +412,7 @@
                 ['char_src', 'str'],
                 ['char_offsetX', 'int'],
                 ['char_offsetY', 'int'],
+                ['char_zoom', 'int'],
                ];
     app.loadData(); //加载后读取数据
     //关闭时保存数据

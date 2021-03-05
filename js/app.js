@@ -44,8 +44,12 @@ var app = new Vue({
     char_src: 'img/characters/char_002_amiya_1.png',
     char_offsetX: 70,
     char_offsetY: -20,
+    char_zoom: 100,
   },
   computed: {
+    char_zoom_style: function () {
+      return "transform: scale(" + String(this.char_zoom/100) +");"
+    },
     text: function () {
       var obj = {};
       for (let t in this.texts) obj[t] = this.texts[t][this.text_index[t]];
@@ -161,6 +165,7 @@ var app = new Vue({
     resetOffset: function () {
       this.char_offsetX = 70;
       this.char_offsetY = -20;
+      this.char_zoom = 100;
     }
   }
 })
