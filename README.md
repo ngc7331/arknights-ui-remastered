@@ -48,7 +48,7 @@
 
 # 下面是原作者相关信息
 # Arknights UI：H5 + CSS 复刻明日方舟主界面
-![screenshot](screenshot.png)
+![screenshot](preview/screenshot.png)
 
 ## Demo
 <https://mashirozx.github.io/arknights-ui/>
