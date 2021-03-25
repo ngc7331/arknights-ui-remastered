@@ -127,7 +127,7 @@
 -- License: MIT
 -->
   <div id="app">
-    <audio :src="bgm.src" id="bgm" @ended="bgmEnd()" :volume.prop="volume/100"></audio>
+    <audio :src="bgm.src" id="bgm" @ended="bgmEnd()" :volume.prop="volume/100" @CanPlay="bgmCanPlay()"></audio>
   	<header>
   		<div class="level-box-container">
   			<div class="level-box" id="level-box-adapter">

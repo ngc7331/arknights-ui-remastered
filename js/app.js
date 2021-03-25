@@ -41,6 +41,7 @@ var app = new Vue({
     bgm_loop: true,
     bgm_list: [{id: 1371757760, name: "生命流" }],
     bgm_keyboard: 0,
+    autoplay: false,
     char_src: 'img/characters/char_002_amiya_1.png',
     char_offsetX: 70,
     char_offsetY: -20,
@@ -145,6 +146,7 @@ var app = new Vue({
       if (keyboard) setTimeout(function () {app.text_index.battle = 0; app.bgm_keyboard = 0; }, 500);
     },
     changeBGM: function (m) {
+      this.autoplay = !document.getElementById("bgm").paused;
       if (m == 0) { this.bgm_index = 0; }
       else {
         this.bgm_index += m;
@@ -155,6 +157,13 @@ var app = new Vue({
     bgmEnd: function () {
       if (!this.bgm_loop) this.changeBGM(1);
       this.playBGM(-2);
+    },
+    bgmCanPlay: function () {
+      console.log(this.autoplay)
+      if (this.autoplay){
+         document.getElementById("bgm").play();
+        this.autoplay = false;
+      }
     },
     setOffset: function () {
       var cssText = $("#char-arts-layer").attr("style")+";"
