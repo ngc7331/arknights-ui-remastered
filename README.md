@@ -1,71 +1,51 @@
-# 小造的BB
+# Arknights UI Remastered：H5 + CSS + Vue 复刻明日方舟主界面
+
+衍生自[mashirozx/arknights-ui](https://github.com/mashirozx/arknights-ui)
+
+## 小造BB
 作为一个h5、css、javascript外加vue.js的四重初学者（要学的怎么越来越多了啊喂）和一个学生党，我因为对明日方舟的厨力开始尝试更新此项目。
 
 如果您对于我有任何建议（包括使用Github的方式、写代码的格式、命名规范等等）请不吝赐教，谢谢。
 
-2021/02/02起开始尝试用vue重写部分功能，大幅度简化代码，并已将vue分支作为默认分支。
-
-原始版本（最后于2020/08/28更新）请见[master分支](https://github.com/ngc7331/arknights-ui-remastered/tree/master)。
-
 ## 目前实现的功能
-“情报”：作者信息
+- 使用空格键控制BGM播放/暂停，上/下键控制音量，左/右键播放上下首
+- “情报”：作者信息
+    * ![](preview/info.png)
+- “好友”/“购买源石、合成玉”：主设置界面，可设置用户昵称、等级、ID、理智上限、三种代币数额、作战进度、对话。
+    * ![](preview/setting.png)
+- “作战”：BGM播放/暂停
+    * ![](preview/play.png)
+- “理智”：BGM设置界面
+    * ![](preview/bgm.png)
+- “干员”：切换角色立绘界面
+    * ![](preview/character.png)
+- “编队”：调整干员立绘位置
+    * ![](preview/position.png)
 
-![情报](preview/01.gif)
-
-“好友”/“购买源石、合成玉”：主设置界面，可设置用户昵称、等级、ID、理智上限、三种代币数额、作战进度、对话。
-
-![设置](preview/02.gif)
-
-“作战”：BGM播放/暂停
-
-“理智”：音量设置界面
-
-![BGM](preview/03.gif)
-
-“干员”：切换角色立绘界面
-
-![干员](preview/04.gif)
-
-“仓库”：导入/导出设置，便于跨设备保存设置
-
-![导出](preview/05.gif)
-
-![导入](preview/06.gif)
+## Change log
+- 2021/03/27 V2.1.1 更新`update_bgmlist.py`，修改部分数据结构
+- 2021/03/25 增加`update_bgmlist.py`用于自动从网易云获取BGM，修复bgm相关bug
+- 2021/03/05 V2.1 增加立绘缩放的功能
+- 2021/03/05 V2.0 Vue重写基本完成，增加`update_characters.py`用于更新立绘
+- 2021/03/04 使用json存储BGM和立绘数据，用Vue重写`set_characters.html`
+- 2021/02/03 V2.0beta
+- 2021/02/02 开始尝试用vue重写部分功能，大幅度简化代码，并将vue分支作为默认分支。原始版本（最后于2020/08/28更新）请见[master分支](https://github.com/ngc7331/arknights-ui-remastered/tree/master)
+- 此前的更新请查看[commits](https://github.com/ngc7331/arknights-ui-remastered/commits/master)
 
 ## TODO
-美化一下界面
-
-增加按钮的动效
-
-...
-
-要学的还很多呐
+- 美化界面
+- 增加按钮动效
+- 整合剧情回放、抽卡模拟等功能？
+- ...
+- 要学的还很多啊
 
 ## DEMO
-<https://ngc7331.github.io/arknights-ui-remastered/>
+Github page：<https://ngc7331.github.io/arknights-ui-remastered/>
 
-国内请尝试gitee：<https://xu_zh.gitee.io/arknights-ui-remastered/>
-
-# 下面是原作者相关信息
-# Arknights UI：H5 + CSS 复刻明日方舟主界面
-![screenshot](preview/screenshot.png)
-
-## Demo
-<https://mashirozx.github.io/arknights-ui/>
-
-## IDEA
-本来只是想做个人物立绘挂上一个日历做壁纸的，然后顺手把按键也做了上去，感觉这么多键位可以开发不少功能呢。
-
-## 立绘
-立绘下载：<https://share.2heng.xin/?share/folder&user=1&sid=vRtSdN3p> 提取密码: U9HIc
-
-## TODO
-切换立绘、角色台词、支持修改用户信息、游戏等级的扇形图可以用来显示温度等信息、and more...
-
-如果你实现了新的功能，欢迎 PR！
+国内请尝试Gitee：<https://xu_zh.gitee.io/arknights-ui-remastered/>
 
 ## 版权相关
 界面贴图素材都是游戏逆向出来的，仅供学习使用，请勿商用。
 
 ## License
-© [Mashiro](https://github.com/mashirozx/), Released under the [MIT](https://github.com/mashirozx/arknights-ui/blob/master/LICENSE) License.
+© [Mashiro](https://github.com/mashirozx/), [xu_zh](https://github.com/ngc7331/), Released under the [MIT](https://github.com/mashirozx/arknights-ui/blob/master/LICENSE) License.
