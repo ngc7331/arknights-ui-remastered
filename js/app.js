@@ -5,10 +5,11 @@
 var app = new Vue({
   el: '#app',
   data: {
+    version: '2.1.1',
     volume: 20,
     username: '小造xu_zh',
     userid: 27975991,
-    userlv: 117,
+    userlv: 119,
     battlelv: '全部完成',
     money: '114514',
     jasper: '1919',
@@ -41,11 +42,17 @@ var app = new Vue({
     bgm_loop: true,
     bgm_list: [{id: 1371757760, name: "生命流" }],
     bgm_keyboard: 0,
+    bgm_date: '0000-00-00',
     autoplay: false,
     char_src: 'img/characters/char_002_amiya_1.png',
     char_offsetX: 70,
     char_offsetY: -20,
     char_zoom: 100,
+    date: {
+      app: '2021-03-27',
+      art: '2021-03-09',
+      bgm: '0000-00-00'
+    }
   },
   computed: {
     char_zoom_style: function () {
@@ -100,7 +107,8 @@ var app = new Vue({
       console.log('load bgm_list');
       axios.get("data/bgm_list.json")
         .then(response => {
-          this.bgm_list = response.data;
+          this.bgm_list = response.data.data;
+          this.date.bgm = response.data.time;
           console.log('load data');
         for (var i = 0; i<data.length; i++) {
           var key = data[i][0];
