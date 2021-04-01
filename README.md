@@ -23,6 +23,7 @@
     * ![](preview/position.png)
 
 ## Change log
+- 2021/04/01 什么都没有更新？什么？你说按`F12`在控制台输入`HappyAprilFoolsDay(1)`有奇效？才没有呢！
 - 2021/03/27 V2.1.1 更新`update_bgmlist.py`，修改部分数据结构
 - 2021/03/25 增加`update_bgmlist.py`用于自动从网易云获取BGM，修复bgm相关bug
 - 2021/03/05 V2.1 增加立绘缩放的功能
