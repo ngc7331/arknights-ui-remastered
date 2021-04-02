@@ -23,14 +23,15 @@
     * ![](preview/position.png)
 
 ## Change log
-- 2021/04/01 什么都没有更新？什么？你说按`F12`在控制台输入`HappyAprilFoolsDay(1)`有奇效？才没有呢！
-- 2021/03/27 V2.1.1 更新`update_bgmlist.py`，修改部分数据结构
-- 2021/03/25 增加`update_bgmlist.py`用于自动从网易云获取BGM，修复bgm相关bug
-- 2021/03/05 V2.1 增加立绘缩放的功能
-- 2021/03/05 V2.0 Vue重写基本完成，增加`update_characters.py`用于更新立绘
-- 2021/03/04 使用json存储BGM和立绘数据，用Vue重写`set_characters.html`
-- 2021/02/03 V2.0beta
-- 2021/02/02 开始尝试用vue重写部分功能，大幅度简化代码，并将vue分支作为默认分支。原始版本（最后于2020/08/28更新）请见[master分支](https://github.com/ngc7331/arknights-ui-remastered/tree/master)
+- 2021-04-02 使用Github Actions自动更新BGM列表
+- 2021-04-01 什么都没有更新？什么？你说按`F12`在控制台输入`HappyAprilFoolsDay(1)`有奇效？才没有呢！
+- 2021-03-27 V2.1.1 更新`update_bgmlist.py`，修改部分数据结构
+- 2021-03-25 增加`update_bgmlist.py`用于自动从网易云获取BGM，修复bgm相关bug
+- 2021-03-05 V2.1 增加立绘缩放的功能
+- 2021-03-05 V2.0 Vue重写基本完成，增加`update_characters.py`用于更新立绘
+- 2021-03-04 使用json存储BGM和立绘数据，用Vue重写`set_characters.html`
+- 2021-02-03 V2.0beta
+- 2021-02-02 开始尝试用vue重写部分功能，大幅度简化代码，并将vue分支作为默认分支。原始版本（最后于2020-08-28更新）请见[master分支](https://github.com/ngc7331/arknights-ui-remastered/tree/master)
 - 此前的更新请查看[commits](https://github.com/ngc7331/arknights-ui-remastered/commits/master)
 
 ## TODO

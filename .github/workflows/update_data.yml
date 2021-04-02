@@ -1,0 +1,31 @@
+name: Update Data
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+jobs:
+  bgm:
+    name: Update BGM
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: 'Set up Python'
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    - name: Install selenium
+      run: |
+        pip install selenium
+        wget http://npm.taobao.org/mirrors/chromedriver/89.0.4389.23/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/bin
+        chmod 777 /usr/bin/chromedriver
+        rm chromedriver_linux64.zip
+    - name: Working
+      run: python update_bgmlist.py
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v4.9.2
+      with:
+        commit_message: Automatically update data/bgm_list.json
+        file_pattern: data/*.json
