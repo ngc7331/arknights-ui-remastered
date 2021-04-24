@@ -17,7 +17,7 @@ jobs:
     - name: Install selenium
       run: |
         pip install selenium
-        wget http://npm.taobao.org/mirrors/chromedriver/89.0.4389.23/chromedriver_linux64.zip
+        wget http://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/bin
         chmod 777 /usr/bin/chromedriver

@@ -2,6 +2,8 @@
 
 衍生自[mashirozx/arknights-ui](https://github.com/mashirozx/arknights-ui)
 
+![Update Data](https://github.com/ngc7331/arknights-ui-remastered/actions/workflows/update_data.yml/badge.svg)
+
 ## 小造BB
 作为一个h5、css、javascript外加vue.js的四重初学者（要学的怎么越来越多了啊喂）和一个学生党，我因为对明日方舟的厨力开始尝试更新此项目。
 
