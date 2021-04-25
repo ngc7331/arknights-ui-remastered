@@ -23,7 +23,7 @@ with open('data/bgm_list.json', 'r', encoding='utf-8') as f:
 
 browser.get(url)
 iframe = browser.find_element_by_class_name('g-iframe')
-browser.switch_to_frame(iframe) #切换到iframe
+browser.switch_to.frame(iframe) #切换到iframe
 browser2 = webdriver.Chrome(options=chrome_options)
 albums = browser.find_elements_by_class_name('msk')
 changed = False
@@ -41,7 +41,7 @@ for album in albums:
     #进入专辑页面
     browser2.get(href)
     iframe = browser2.find_element_by_class_name('g-iframe')
-    browser2.switch_to_frame(iframe)
+    browser2.switch_to.frame(iframe)
     topblk = browser2.find_element_by_class_name('topblk')
     date = time.mktime(time.strptime(
         topblk.find_element_by_xpath('.//p[2]').text[5:],
