@@ -3,6 +3,7 @@
 衍生自[mashirozx/arknights-ui](https://github.com/mashirozx/arknights-ui)
 
 ![Update Data](https://github.com/ngc7331/arknights-ui-remastered/actions/workflows/update_data.yml/badge.svg)
+![Github Pages](https://img.shields.io/github/deployments/ngc7331/arknights-ui-remastered/github-pages?label=Github%20Pages)
 
 ## 小造BB
 作为一个h5、css、javascript外加vue.js的四重初学者（要学的怎么越来越多了啊喂）和一个学生党，我因为对明日方舟的厨力开始尝试更新此项目。
@@ -25,6 +26,7 @@
     * ![](preview/position.png)
 
 ## Change log
+- 2021-04-25 使用Github Actions自动更新立绘
 - 2021-04-02 使用Github Actions自动更新BGM列表
 - 2021-04-01 什么都没有更新？什么？你说按`F12`在控制台输入`HappyAprilFoolsDay(1)`有奇效？才没有呢！
 - 2021-03-27 V2.1.1 更新`update_bgmlist.py`，修改部分数据结构
