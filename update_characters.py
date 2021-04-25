@@ -8,7 +8,8 @@ url = {
     'base': 'https://kokodayo.fun/',
     'skin': 'https://kokodayo.fun/skins',
     'characters': 'https://andata.somedata.top/dataX/char/set/',
-    'avatars': 'https://andata.somedata.top/dataX/char/profile/'
+    'avatars': 'https://andata.somedata.top/dataX/char/profile/',
+    'table': 'https://raw.githubusercontent.com/Kengxxiao/ArknightsGameData/master/zh_CN/gamedata/excel/skin_table.json'
 }
 headers = {
     'referer': 'https://kokodayo.fun/'
@@ -89,7 +90,7 @@ def l():
             return 2
         return int(re.search('^([0-9]*)_', name).group(1))
 
-    r = requests.get('https://raw.githubusercontent.com/Kengxxiao/ArknightsGameData/master/zh_CN/gamedata/excel/skin_table.json')
+    r = requests.get(urls['table'])
     char_l = []
     for i in json.loads(r.content)['charSkins'].keys():
         if ('char' != i[:4]):

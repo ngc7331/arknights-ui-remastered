@@ -4,8 +4,8 @@ on:
     - cron: '0 4 * * *'
   workflow_dispatch:
 jobs:
-  bgm:
-    name: Update BGM
+  work:
+    name: Update data
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -23,7 +23,9 @@ jobs:
         chmod 777 /usr/bin/chromedriver
         rm chromedriver_linux64.zip
     - name: Working
-      run: python update_bgmlist.py
+      run: |
+        python update_bgmlist.py
+        python update_characters.py
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.9.2
       with:
