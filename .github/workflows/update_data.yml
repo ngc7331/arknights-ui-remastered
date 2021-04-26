@@ -16,7 +16,7 @@ jobs:
         python-version: 3.8
     - name: Install selenium
       run: |
-        pip install selenium
+        pip install selenium requests
         wget http://chromedriver.storage.googleapis.com/89.0.4389.23/chromedriver_linux64.zip
         unzip chromedriver_linux64.zip
         sudo mv chromedriver /usr/bin
