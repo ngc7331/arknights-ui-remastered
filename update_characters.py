@@ -90,7 +90,7 @@ def l():
             return 2
         return int(re.search('^([0-9]*)_', name).group(1))
 
-    r = requests.get(urls['table'])
+    r = requests.get(url['table'])
     char_l = []
     for i in json.loads(r.content)['charSkins'].keys():
         if ('char' != i[:4]):
