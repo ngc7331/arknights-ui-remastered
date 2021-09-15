@@ -1,19 +1,59 @@
 from selenium import webdriver
+from selenium.common.exceptions import *
 import json
 import time
+import requests
+import sys
+import os
 
 url = 'https://music.163.com/#/artist/album?id=32540734&limit=100'
 nl = []
 t = time.strftime('%Y-%m-%d', time.localtime())
+CHROMEDRIVER_URL = 'http://chromedriver.storage.googleapis.com/'
+CHROMEDRIVER_ARCH = 'linux64'
+
+def initBrowser(retry:int=0) -> webdriver.Chrome:
+    def installChromeDriver(dir:str, version:str = None) -> None:
+        if (version is None):
+            r = requests.get('%sLATEST_RELEASE' % CHROMEDRIVER_URL)
+        else:
+            r = requests.get('%sLATEST_RELEASE_%s' % (CHROMEDRIVER_URL, version))
+        version = r.content.decode()
+        os.popen('wget %s%s/chromedriver_%s.zip -O chromedriver.zip' % (CHROMEDRIVER_URL, version, CHROMEDRIVER_ARCH))
+        os.popen('unzip chromedriver.zip')
+        os.popen('sudo mv chromedriver "%s"' % dir)
+        os.popen('sudo chmod 777 "%s/chromedriver"' % dir)
+        os.popen('rm chromedriver.zip' % CHROMEDRIVER_ARCH)
+
+    if (retry >= 3):
+        print('Failed 3 times, exiting...')
+        sys.exit(1)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('blink-settings=imagesEnabled=false')
+    try:
+        browser = webdriver.Chrome(options=chrome_options)
+    except Exception as e:
+        print(e)
+        if ("'chromedriver' executable needs to be in PATH." in e.__str__()):
+            print('ChromeDriver Not Found, trying to install...')
+            installChromeDriver('/usr/bin')
+            return initBrowser(retry+1)
+        elif ('Current browser version is' in e.__str__()):
+            print('Outdated ChromeDriver, trying to update...')
+            version = e.__str__()
+            version = version[version.find('Current browser version is ')+27:version.find(' with binary path')].split('.')
+            installChromeDriver('/usr/bin', version[0])
+            return initBrowser(retry+1)
+        sys.exit(1)
+    else:
+        return browser
 
 #初始化浏览器
-chrome_options = webdriver.ChromeOptions()
-chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('blink-settings=imagesEnabled=false')
-browser = webdriver.Chrome(options=chrome_options)
+browser, browser2 = initBrowser(), initBrowser()
 
 with open('data/bgm_list.json', 'r', encoding='utf-8') as f:
     f = f.read()
@@ -24,7 +64,6 @@ with open('data/bgm_list.json', 'r', encoding='utf-8') as f:
 browser.get(url)
 iframe = browser.find_element_by_class_name('g-iframe')
 browser.switch_to.frame(iframe) #切换到iframe
-browser2 = webdriver.Chrome(options=chrome_options)
 albums = browser.find_elements_by_class_name('msk')
 changed = False
 new_album = ''
