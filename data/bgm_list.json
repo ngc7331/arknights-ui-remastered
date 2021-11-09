@@ -1,6 +1,6 @@
 {
-  "time": "2021-11-04",
-  "last_album": "135621587",
+  "time": "2021-11-09",
+  "last_album": "135828065",
   "data": [
     {
       "id": "1371757760",
@@ -429,6 +429,26 @@
     {
       "id": "1891941284",
       "name": "Under Tides"
+    },
+    {
+      "id": "1893260974",
+      "name": "Operation Lead Seal"
+    },
+    {
+      "id": "1893265832",
+      "name": "Operation Lead Seal (Instrumental)"
+    },
+    {
+      "id": "1893265830",
+      "name": "Operation Spectrum"
+    },
+    {
+      "id": "1893260973",
+      "name": "Operation Wild Scales"
+    },
+    {
+      "id": "1893265831",
+      "name": "Operation Wild Scales (Instrumental)"
     }
   ]
 }
