@@ -1,6 +1,6 @@
 {
-  "time": "2022-02-22",
-  "last_album": "140743207",
+  "time": "2022-02-25",
+  "last_album": "140793974",
   "data": [
     {
       "id": "1371757760",
@@ -509,6 +509,18 @@
     {
       "id": "1922349073",
       "name": "Прощание (Instrumental)"
+    },
+    {
+      "id": "1922637266",
+      "name": "Operation Dawnseeker"
+    },
+    {
+      "id": "1922637277",
+      "name": "Operation Dawnseeker (Instrumental)"
+    },
+    {
+      "id": "1922639827",
+      "name": "Fading Sky"
     }
   ]
 }
