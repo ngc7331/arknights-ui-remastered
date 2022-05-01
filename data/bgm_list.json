@@ -1,6 +1,6 @@
 {
-  "time": "2022-04-20",
-  "last_album": "143634183",
+  "time": "2022-05-01",
+  "last_album": "144012084",
   "data": [
     {
       "id": "1371757760",
@@ -541,6 +541,14 @@
     {
       "id": "1939239925",
       "name": "A Grand Adventure"
+    },
+    {
+      "id": "1941653825",
+      "name": "Awaken"
+    },
+    {
+      "id": "1941653848",
+      "name": "Awaken (Instrumental)"
     }
   ]
 }
