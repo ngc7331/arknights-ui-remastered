@@ -1,6 +1,6 @@
 {
-  "time": "2022-05-02",
-  "last_album": "144011535",
+  "time": "2022-05-03",
+  "last_album": "144012449",
   "data": [
     {
       "id": "1371757760",
@@ -553,6 +553,14 @@
     {
       "id": "1941656969",
       "name": "Rapier "
+    },
+    {
+      "id": "1941658812",
+      "name": "Bluish Light"
+    },
+    {
+      "id": "1941657132",
+      "name": "Bluish Light (Instrumental)"
     }
   ]
 }
