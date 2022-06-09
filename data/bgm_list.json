@@ -1,6 +1,6 @@
 {
-  "time": "2022-06-01",
-  "last_album": "145752200",
+  "time": "2022-06-09",
+  "last_album": "146089533",
   "data": [
     {
       "id": "1371757760",
@@ -701,6 +701,22 @@
     {
       "id": "1951993692",
       "name": "傀儡的狂喜"
+    },
+    {
+      "id": "1953860839",
+      "name": "Your Star"
+    },
+    {
+      "id": "1953857538",
+      "name": "Your Star (Instrumental)"
+    },
+    {
+      "id": "1953863738",
+      "name": "Ständchen"
+    },
+    {
+      "id": "1953863752",
+      "name": "Ständchen (Instrumental)"
     }
   ]
 }
